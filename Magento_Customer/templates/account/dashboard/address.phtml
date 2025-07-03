@@ -1,0 +1,35 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var \Magento\Customer\Block\Account\Dashboard\Address $block */
+?>
+<div class="block block-dashboard-addresses">
+    <div class="block-content">
+        <div class="box box-billing-address">
+            <strong class="box-title">
+                <span><?= $block->escapeHtml(__('Billing Address')) ?></span>
+                <a href="/customer/address/" class="edit-address-book">Edit</a>
+            </strong>
+            <div class="box-content">
+                <address>
+                    <?= $block->getPrimaryBillingAddressHtml() ?>
+                </address>
+            </div>
+        </div>
+        <div class="box box-shipping-address">
+            <strong class="box-title">
+                <span><?= $block->escapeHtml(__('Shipping Address')) ?></span>
+                <a href="/customer/address/" class="edit-address-book">Edit</a>
+            </strong>
+            <div class="box-content">
+                <address>
+                    <?= $block->getPrimaryShippingAddressHtml() ?>
+                </address>
+            </div>
+            
+        </div>
+    </div>
+</div>

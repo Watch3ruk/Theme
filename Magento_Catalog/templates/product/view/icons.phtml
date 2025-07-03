@@ -1,0 +1,82 @@
+<?php
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/*  @codingStandardsIgnoreFile */
+
+/**
+ * Product additional attributes template
+ *
+ * @var $block \Magento\Catalog\Block\Product\View\Attributes
+ */
+?>
+<?php
+    $_helper = $this->helper('Magento\Catalog\Helper\Output');
+    $_product = $block->getProduct();
+    $iconDir = $this->getURL("pub/media/allergens");/* .'\allergens'; */
+
+    $veg = $iconDir.'veg'; 
+    $vega = $iconDir.'vega';
+    $coe = $iconDir.'coe';
+
+    $contain = 'Yes';
+    $notcontain = 'No';
+
+    $containArray = [];
+    $count = 0;
+
+    $vegvalue = $_product->getResource()->getAttribute('is_Vegetarian')->getFrontend()->getValue($_product);
+
+    switch ($vegvalue) {
+        case $contain:
+            $containArray[$count]['name'] = $_product->getResource()->getAttribute('is_Vegetarian')->getStoreLabel($_product);
+            $containArray[$count]['image'] = $veg."_red";
+            break;
+        default:
+            $veg.="";
+    };
+
+    $vegavalue = $_product->getResource()->getAttribute('is_Vegans')->getFrontend()->getValue($_product);
+
+    switch ($vegavalue) {
+        case $contain:
+            $count++;
+            $containArray[$count]['name'] = $_product->getResource()->getAttribute('is_Vegans')->getStoreLabel($_product);
+            $containArray[$count]['image'] = $vega."_red";
+            break;
+        default:
+            $vega.="";
+    };
+
+    $coevalue = $_product->getResource()->getAttribute('is_Coeliacs')->getFrontend()->getValue($_product);
+
+    switch ($coevalue) {
+        case $contain:
+            $count++;
+            $containArray[$count]['name'] = $_product->getResource()->getAttribute('is_Coeliacs')->getStoreLabel($_product);
+            $containArray[$count]['image'] = $coe."_red";
+            break;
+        default:
+            $coe.="";
+    };
+
+   ?>
+
+<div class="icon-wrapper">
+    <?php if(count($containArray) > 0) { ?>
+	<div class="suitable-section">
+        <h3>Suitable for :</h3>
+        <div class="suitable-section-icons">
+        <?php foreach($containArray as $contain) { ?>
+            <div class="content">
+                <img src="<?= $contain['image'].'.svg'; ?>" style="width: 48px;">
+                <span class="suitable-span"><?= $contain['name']; ?></span>
+            </div>
+        <?php } ?>		
+	</div>
+        </div>
+    <?php } ?>
+
+</div>

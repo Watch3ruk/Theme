@@ -1,0 +1,142 @@
+<?php
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/*  @codingStandardsIgnoreFile */
+
+/**
+ * Product additional attributes template
+ *
+ * @var $block \Magento\Catalog\Block\Product\View\Attributes
+ */
+?>
+<?php
+    $_helper = $this->helper('Magento\Catalog\Helper\Output');
+    $_product = $block->getProduct();
+
+    $manufacturerName  = $_product->getAttributeText('manufacturer');
+$manufacturerId  = $_product->getResource()->getAttribute('manufacturer')->setStoreId(0)->getFrontend()->getValue($_product);
+
+$energy_cal_kj = $_product->getResource()->getAttribute('cal_100_kj')->getFrontend()->getValue($_product);
+$energy_cal_kcal = $_product->getResource()->getAttribute('cal_100_kcal')->getFrontend()->getValue($_product);
+$fat = $_product->getResource()->getAttribute('fat_100')->getFrontend()->getValue($_product);
+$sat_fat = $_product->getResource()->getAttribute('sat_fat_100')->getFrontend()->getValue($_product);
+$carb_100 = $_product->getResource()->getAttribute('carb_100')->getFrontend()->getValue($_product);
+$sugar_carb_100 = $_product->getResource()->getAttribute('sugar_carb_100')->getFrontend()->getValue($_product);
+$fibre_100 = $_product->getResource()->getAttribute('fibre_100')->getFrontend()->getValue($_product);
+$protein_100 = $_product->getResource()->getAttribute('protein_100')->getFrontend()->getValue($_product);
+$salt_100 = $_product->getResource()->getAttribute('salt_100')->getFrontend()->getValue($_product);
+?>
+
+<div class="k2n-wrapper">
+    <span class="k2n-serving-title col-lg-12 col-md-12" >Amount Per 100g Serving</span>
+    
+    <!--energy-->
+    <div class="k2n-group col-lg-12 col-md-12">
+        <div class="k2n-title col-lg-6 col-md-6">Energy</div>  
+        <div class="k2n-value col-lg-6 col-md-6">
+        	<?php
+        	if($energy_cal_kj){
+        		echo $energy_cal_kj.'Kj';
+        	}
+        	if($energy_cal_kj && $energy_cal_kcal){
+        		echo "/";
+        	}
+        	if($energy_cal_kcal){
+        		echo $energy_cal_kcal.'kCal';
+        	}
+        	?>
+        </div> 
+    </div>
+    <!--fats-->
+    <div class="k2n-group col-lg-12 col-md-12">
+        <?php if ($fat): ?>
+        <div class="col-lg-12 col-md-12">
+            <div class="k2n-title col-lg-6 col-md-6">Fat (of which)</div>  
+            <div class="k2n-value col-lg-6 col-md-6"><?= $fat.'g';?></div> 
+        </div>         
+        <?php endif;?>  
+        <?php if ($sat_fat): ?>
+        <div class="col-lg-12 col-md-12">
+            <div class="k2n-subtitle col-lg-6 col-md-6">saturates</div>  
+            <div class="k2n-value col-lg-6 col-md-6"><?= $sat_fat.'g';?></div> 
+        </div>
+        <?php endif;?>
+        <div class="col-lg-12 col-md-12">
+            <div class="k2n-subtitle col-lg-6 col-md-6">mono-unsaturates</div>  
+            <div class="k2n-value col-lg-6 col-md-6">0g</div> 
+        </div>
+        <div class="col-lg-12 col-md-12">
+            <div class="k2n-subtitle col-lg-6 col-md-6">polyunsaturates</div>  
+            <div class="k2n-value col-lg-6 col-md-6">0g</div> 
+        </div>      
+        <div class="col-lg-12 col-md-12">
+            <div class="k2n-subtitle col-lg-6 col-md-6">transfats</div>  
+            <div class="k2n-value col-lg-6 col-md-6">0g</div> 
+        </div>
+    </div>
+    <!--carbs-->
+    <div class="k2n-group col-lg-12 col-md-12">
+        <?php if ($carb_100): ?>
+        <div class="col-lg-12 col-md-12">
+            <div class="k2n-title col-lg-6 col-md-6">Carbohydrate (of which)</div> 
+            <div class="k2n-value col-lg-6 col-md-6"><?= $carb_100.'g';?></div> 
+        </div>   
+        <?php endif;?>
+        <?php if ($sugar_carb_100): ?>     
+        <div class="col-lg-12 col-md-12">
+            <div class="k2n-subtitle col-lg-6 col-md-6">sugars</div>  
+            <div class="k2n-value col-lg-6 col-md-6"><?= $sugar_carb_100.'g';?></div>   
+        </div>
+        <?php endif;?>
+        <div class="col-lg-12 col-md-12">
+            <div class="k2n-subtitle col-lg-6 col-md-6">polyols</div>  
+            <div class="k2n-value col-lg-6 col-md-6">0g</div>   
+        </div>
+        <div class="col-lg-12 col-md-12">
+            <div class="k2n-subtitle col-lg-6 col-md-6">starch </div>  
+            <div class="k2n-value col-lg-6 col-md-6">0g</div>   
+        </div>
+        <div class="col-lg-12 col-md-12">
+            <div class="k2n-subtitle col-lg-6 col-md-6">non milk </div>  
+            <div class="k2n-value col-lg-6 col-md-6">0g</div> 
+        </div>
+    </div>
+
+    <!--Cholesterol-->
+    <div class="k2n-group col-lg-12 col-md-12">
+        <div class="col-lg-12 col-md-12">
+            <div class="k2n-title col-lg-6 col-md-6">Cholesterol</div>  
+            <div class="k2n-value col-lg-6 col-md-6">0g</div> 
+        </div>  
+    </div>     
+    <!--fibre-->
+    <?php if ($fibre_100): ?>
+    <div class="k2n-group col-lg-12 col-md-12">
+        <div class="col-lg-12 col-md-12">
+            <div class="k2n-title col-lg-6 col-md-6">fibre</div>  
+            <div class="k2n-value col-lg-6 col-md-6"><?= $fibre_100.'g';?></div> 
+        </div>  
+    </div>  
+    <?php endif;?>
+    <!--protein-->
+    <?php if ($protein_100): ?>
+    <div class="k2n-group col-lg-12 col-md-12">
+        <div class="col-lg-12 col-md-12">
+            <div class="k2n-title col-lg-6 col-md-6">protein</div>
+            <div class="k2n-value col-lg-6 col-md-6"><?= $protein_100.'g';?></div> 
+        </div>  
+    </div>  
+    <?php endif;?>
+    <!--salt-->
+    <?php if ($salt_100): ?>
+    <div class="k2n-group col-lg-12 col-md-12">
+        <div class="col-lg-12 col-md-12">
+            <div class="k2n-title col-lg-6 col-md-6">salt</div>  
+            <div class="k2n-value col-lg-6 col-md-6"><?= $salt_100.'g';?></div> 
+        </div>  
+    </div> 
+    <?php endif;?>
+</div>

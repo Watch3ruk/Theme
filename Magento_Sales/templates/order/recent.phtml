@@ -1,0 +1,178 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// phpcs:disable Magento2.Templates.ThisInTemplate
+
+/** @var $block \Magento\Sales\Block\Order\Recent */
+$accord_helper = $this->helper('Adlab\Accord\Helper\Data');
+$customer_group_code = $accord_helper->isCustomerAccordCode();
+$group_type = $accord_helper->isCustomerGroupCode();
+$customer_accord_code = $accord_helper->isCustomerAccordCode();
+?>
+
+<div class="block block-dashboard-orders">
+<?php
+    if($group_type == 2){
+        $_orders = $block->getLayout()->createBlock('Adlab\Accord\Block\Order\OrderHistory')->getOrders();
+    }else{
+        $_orders = $block->getOrders();
+    }
+    $count = count($_orders);
+
+?>
+    <div class="block-title order">
+        <strong><?= $block->escapeHtml(__('Recent orders')) ?></strong>
+    </div>
+    <div class="block-content">
+    <?= $block->getChildHtml() ?>
+    <?php if ($count > 0) : ?>
+        <div class="block-title order">
+            <?php if ($count > 0) : ?>
+                <?php 
+                if($group_type == 2){
+                    $history_page= $block->getUrl('accord/orders/index');
+                }else{
+                    $history_page= $block->getUrl('sales/order/history');
+                }
+                
+                ?>
+                <a class="action view" href="<?= $history_page?>">
+                    <span><?= $block->escapeHtml(__('View All')) ?></span>
+                </a>
+            <?php endif; ?>
+        </div>
+        <div class="table-wrapper orders-recent">
+            <table class="data table table-order-items recent sdsd" id="my-orders-table">
+                <caption class="table-caption"><?= $block->escapeHtml(__('Recent Orders')) ?></caption>
+                <thead>
+                    <tr>
+                        <th scope="col" class="col id"><?= $block->escapeHtml(__('Order #')) ?></th>
+                        <th scope="col" class="col date"><?= $block->escapeHtml(__('Date')) ?></th>
+                        <th scope="col" class="col total"><?= $block->escapeHtml(__('Order Total')) ?></th>
+                        <th scope="col" class="col status"><?= $block->escapeHtml(__('Status')) ?></th>
+                        <th scope="col" class="col actions"><?= $block->escapeHtml(__('Action')) ?></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <?php 
+                        $i=1;
+                        foreach ($_orders as $_order) : 
+                            $items=$_order->getAllItems();
+                            // echo"------------------------------";
+                            // foreach ($items as $item) {
+                            //   echo $item->getSku();
+                            //   echo "<br>";
+                            // }
+                            $order_increment_id = $_order->getRealOrderId();
+                            $accord_invoice_id = '';
+                            if($_order->getRefAccordOrderId())
+                            {
+                                $order_increment_id = $_order->getRefAccordOrderId();
+    
+                                $order_invoice_collection = $_order->getInvoiceCollection();
+                                if($order_invoice_collection)
+                                {
+                                    foreach ($order_invoice_collection as $invoice_data) {
+                                        $accord_invoice_id = $invoice_data->getAccordInvoiceId();
+                                    }
+                                }                            
+                            }
+
+                            if($i <= 5){
+                            ?>
+                            <tr>
+                                <td data-th="<?= $block->escapeHtml(__('Order #')) ?>" class="col id"><?= $block->escapeHtml($order_increment_id) ?></td>
+                                <td data-th="<?= $block->escapeHtml(__('Date')) ?>" class="col date"><?= $block->escapeHtml($block->formatDate($_order->getCreatedAt())) ?></td>
+                                <td data-th="<?= $block->escapeHtml(__('Order Total')) ?>" class="col total"><?= /* @noEscape */ $_order->formatPrice($_order->getGrandTotal()) ?></td>
+                                <td data-th="<?= $block->escapeHtml(__('Status')) ?>" class="col status"><?= $block->escapeHtml($_order->getStatusLabel()) ?></td>
+                                <td data-th="<?= $block->escapeHtml(__('Actions')) ?>" class="col actions">
+                                    <?php if ($this->helper(\Magento\Sales\Helper\Reorder::class)
+                                        ->canReorder($_order->getEntityId())
+                                    ) : ?>
+                                        <a href="#" data-post='<?= /* @noEscape */
+                                        $this->helper(\Magento\Framework\Data\Helper\PostHelper::class)
+                                            ->getPostData($block->getReorderUrl($_order))
+                                        ?>' class="action order">
+                                            <span><?= $block->escapeHtml(__('Reorder')) ?></span>
+                                        </a>
+                                    <?php endif ?>
+                                    <?php if($accord_invoice_id) { ?>
+                                        <a href="#" class="downloadinvoice-accord" id="downloadinvoice-<?=$accord_invoice_id;?>" download="<?=$accord_invoice_id;?>" style="display:none;">
+                                    </a>
+                                    <span class="downloadinvoice" data-invoiceid="<?=$accord_invoice_id;?>">Invoice
+                                    </span>
+                                <?php } ?>
+                                </td>
+                            </tr>
+                    <?php
+                            }else{
+                                break;
+                            }
+                            $i++;
+                        endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    <?php else : ?>
+        <div class="message info empty"><span><?= $block->escapeHtml(__('You have placed no orders.')) ?></span></div>
+    <?php endif; ?>
+    </div>
+</div>
+<script type="text/javascript">
+    require(["jquery"],function($) {
+        $(document).ready(function() {
+            $('.downloadinvoice').on("click", function() {
+                $('.accord-order-loading-mask').show();
+                var invoice_id = $(this).data("invoiceid");
+                $.ajax({
+                url: '/accord/orders/invoicepdf',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    accord_code: '<?php echo $customer_accord_code; ?>',
+                    pdf_name: invoice_id,
+                },
+                success: function(response) {   
+                    if(response)
+                    {                       
+                        $('#downloadinvoice-'+invoice_id).attr("href", "/media/Invoicepdf/"+invoice_id+".pdf");
+                        $('#downloadinvoice-'+invoice_id)[0].click();
+                    } 
+                    else
+                    {
+                        $('.invoice-pdf-error').show();
+                        $('.invoice-pdf-error .error-message').text("PDF with invoice Id "+ invoice_id+" is not available for download.")
+                    } 
+
+                    setTimeout(function(){ 
+                        $('.invoice-pdf-error').hide();
+                        $('.invoice-pdf-error .error-message').text("");
+                    }, 10000); 
+
+                    setTimeout(function(){ 
+
+                        var pdfname = invoice_id+'.pdf';
+                        $.ajax({
+                            url: '/accord/orders/deleteinvoicepdf',
+                            type: 'POST',
+                            dataType: 'json',
+                            data: {
+                                pdfname: pdfname,
+                            },
+                            success: function(response) { 
+                            }
+                        });
+
+                    }, 60000);
+
+                    $('.accord-order-loading-mask').hide();  
+                }
+                });
+            });            
+        });
+    });
+</script>

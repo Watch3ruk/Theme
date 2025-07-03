@@ -1,0 +1,79 @@
+<?php
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<div class="contact-main">
+    <div class="address-container">
+        <div class="address">
+            <div class="mail"><p><a href="mailto:info@thomasridley.co.uk">info@thomasridley.co.uk</a></p></div>
+            <div class="telephone"><p><a href="tel:01359 270536">01359 270536</a></p></div>
+            <div class="address-details">
+                <p>Thomas Ridley Foodservice</p>
+                <p>Endeavor House</p>
+                <p>Perkins Road</p>
+                <p>Bury St Edmunds</p>
+                <p>Suffolk</p>
+                <p>IP30 9ND</p>
+            </div>
+        </div>
+        <div class="store-map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d610.7956348747125!2d0.772081!3d52.240068!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d84cd2a24625a1%3A0x70062c5b8753c5fc!2sThomas%20Ridley%20Foodservice!5e0!3m2!1sen!2sus!4v1689588137091!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </div>
+    <div class="contact-form-container">
+        <h3 class="contact-title">Enquire</h3>
+        <form class="form contact"
+            action="<?php echo $block->getFormAction(); ?>"
+            id="contact-form"
+            method="post"
+            data-hasrequired="<?php echo __('* Required Fields') ?>"
+            data-mage-init='{"validation":{}}'>
+            <fieldset class="fieldset">
+                <div class="fieldset row">
+                    <div class="fields col-md-6">
+                    <div class="field name required">
+                        <label class="label" for="name"><span><?php echo __('Name') ?></span></label>
+                        <div class="control">
+                            <input name="name" id="name" title="<?php echo __('Name') ?>" value="<?php echo $block->escapeHtml($this->helper('Magento\Contact\Helper\Data')->getUserName()) ?>" class="input-text" type="text" data-validate="{required:true}"/>
+                        </div>
+                    </div>
+                    <div class="field email required">
+                        <label class="label" for="email"><span><?php echo __('Email') ?></span></label>
+                        <div class="control">
+                            <input name="email" id="email" title="<?php echo __('Email') ?>" value="<?php echo $block->escapeHtml($this->helper('Magento\Contact\Helper\Data')->getUserEmail()) ?>" class="input-text" type="email" data-validate="{required:true, 'validate-email':true}"/>
+                        </div>
+                    </div>
+                    <div class="field telephone">
+                        <label class="label" for="telephone"><span><?php echo __('Phone Number') ?></span></label>
+                        <div class="control">
+                            <input name="telephone" id="telephone" title="<?php echo __('Phone Number') ?>" value="" class="input-text" type="text" />
+                        </div>
+                    </div>
+                    </div>
+                    <div class="fields col-md-6">
+                    <div class="field comment required">
+                        <label class="label" for="comment"><span><?php echo __('How can we help? ') ?></span></label>
+                        <div class="control">
+                            <textarea name="comment" id="comment" title="<?php echo __('How can we help? ') ?>" class="input-text" cols="5" rows="3" data-validate="{required:true}"></textarea>
+                        </div>
+                    </div>
+                    <?php echo $block->getChildHtml('form.additional.info'); ?>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="actions-toolbar">
+                <div class="primary">
+                    <input type="hidden" name="hideit" id="hideit" value="" />
+                    <button type="submit" title="<?php echo __('Submit') ?>" class="action submit primary">
+                        <span><?php echo __('Enquire Now') ?></span>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>  
+</div>

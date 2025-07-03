@@ -1,0 +1,95 @@
+<?php
+$_helper = $this->helper('Magento\Catalog\Helper\Output');
+$_product = $block->getProduct();
+$productQty = $_product->getExtensionAttributes()->getStockItem()->getQty();
+$charLimit = 410;
+$_product = $block->getProduct();
+$important = $_product->getResource()->getAttribute('important')->getFrontend()->getValue($_product);
+$extra_info = $_product->getResource()->getAttribute('extra_info')->getFrontend()->getValue($_product);
+$replacement = $_product->getResource()->getAttribute('replacement_sku')->getFrontend()->getValue($_product);
+$discontinued = $_product->getResource()->getAttribute('discontinued')->getFrontend()->getValue($_product);
+
+
+  ?>
+<div class="product attribute overview">
+    <div class="value" itemprop="description">
+        <?php
+        $descriptionContent = strip_tags($_helper->productAttribute($_product, (string)$_product->getDescription(), "description"));
+        if(strlen ( $descriptionContent ) > $charLimit):
+            echo '<span class="smallcontent">'.trim(substr($descriptionContent, 0, $charLimit)).' ...</span>' ;
+            echo '<span class="desc-read-more-content" style="display:none">'.$descriptionContent.'</span> <a href="#" class="desc-read-more-link">'.__('Read More').'</a>';
+        else:
+            echo $descriptionContent;
+        endif;
+        ?>
+    </div>
+    <div class="extra-info-box">
+    <table class="data table additional-attributes" id="product-attribute-specs-table">
+        <tbody>
+        	
+            <?php if ($extra_info): ?>
+                <tr>
+                <td class="extra-info-box-data" data-th="<?= 'extra_info' ?>"><?= $extra_info; ?></td>
+            </tr>
+        	<?php endif;?>
+        </tbody>
+    </table>
+</div>
+<div class="nevilles">
+    <table class="data table additional-attributes" id="product-attribute-specs-table">
+        <tbody>
+        	
+            <?php if ($important): ?>
+                <tr>
+                <td class="nevilles-data" data-th="<?= 'important' ?>"><?= $important; ?></td>
+            </tr>
+        	<?php endif;?>
+        </tbody>
+    </table>
+</div>
+<div class="replacement-class">      
+<?php if ($_product->isAvailable()) :?>
+    <?php else :?>
+	 <?php if ($replacement): ?>
+                <div class="replacement">     
+                <div class="replacement-info"> 
+                <?php if ($discontinued == 'Yes'): ?>
+                <p><h3>DISCONTINUED ITEM</h3></p>
+<p>Please note this product is being discontinued and will shortly be removed from our store. </br>
+Need a replacement? Why not try our suggested product highlighted below.</p>
+<?php else :?>
+    <p><h3>OUT OF STOCK ITEM</h3></p>
+<p>Please note this product is temporarily out of stock.</br> Need a replacement? Why not try our suggested product highlighted below. </p>
+<?php endif;?>
+            </div>
+            <div class="replacement-product"> 
+                <?php    echo $this->getLayout()->createBlock("Magento\CatalogWidget\Block\Product\ProductsList")->setConditionsEncoded("^[`1`:^[`type`:`Magento||CatalogWidget||Model||Rule||Condition||Combine`,`aggregator`:`all`,`value`:`1`,`new_child`:``^],`1--1`:^[`type`:`Magento||CatalogWidget||Model||Rule||Condition||Product`,`attribute`:`sku`,`operator`:`==`,`value`:`$replacement`^]^]")->setTemplate("product/widget/content/new_grid.phtml")->toHtml();  ?>
+            </div>
+            </div>
+        	<?php endif;?>
+            <?php endif;?>
+</div>
+
+
+
+
+    <script>        
+        require(['jquery'], function ($) {
+            $(function () {
+                $(".desc-read-more-link").click(function(){
+                    $(".desc-read-more-content").toggleClass("show");
+                    $(".smallcontent").toggle();
+                    if($(".desc-read-more-content").hasClass('show')){
+                        $(".desc-read-more-link").text("<?php echo __('Read Less') ?>");
+                        $(this).parent().children('.desc-read-more-content').css('display','block');
+                    }
+                    else{
+                        $(".desc-read-more-link").text("<?php echo __('Read More') ?>");
+                        $(this).parent().children('.desc-read-more-content').css('display','none');
+                    }
+                    return false;
+                });
+            });
+        });      
+    </script>
+</div>

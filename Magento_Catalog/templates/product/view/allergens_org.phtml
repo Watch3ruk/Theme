@@ -1,0 +1,313 @@
+<?php
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/*  @codingStandardsIgnoreFile */
+
+/**
+ * Product additional attributes template
+ *
+ * @var $block \Magento\Catalog\Block\Product\View\Attributes
+ */
+?>
+<?php
+    $_helper = $this->helper('Magento\Catalog\Helper\Output');
+    $_product = $block->getProduct();
+    $iconDir = $this->getURL("pub/media/allergens");/* .'\allergens'; */
+
+    $celery = $iconDir.'celery'; 
+    $crustacens = $iconDir.'crustaceans';
+    $eggs = $iconDir.'eggs';
+    $fish = $iconDir.'fish';
+    $lupin = $iconDir.'lupin';
+    $milk = $iconDir.'milk';
+    $molluscs = $iconDir.'molluscs';
+    $mustard = $iconDir.'mustard';
+    $peanut = $iconDir.'peanut';
+    $sesame = $iconDir.'sesame';
+    $soya = $iconDir.'soya';
+    $sulphurdioxide = $iconDir.'sulphurdioxide';
+    $treenut = $iconDir.'treenut';
+    $wheat = $iconDir.'wheat';
+
+    $contain = 'does contain';
+    $maycontain = 'may contain';
+    $notcontain = 'does not contain';
+
+    $containArray = [];
+    $maycontainArray = [];
+    $count = 0;
+    $countmay = 0;
+
+    $celeryvalue = $_product->getResource()->getAttribute('allergens_celery')->getFrontend()->getValue($_product);
+
+    switch ($celeryvalue) {
+        case $contain:
+            $containArray[$count]['name'] = $_product->getResource()->getAttribute('allergens_celery')->getStoreLabel($_product);
+            $containArray[$count]['image'] = $celery."_red";
+            break;
+        case $maycontain:
+            $maycontainArray[$countmay]['name'] = $_product->getResource()->getAttribute('allergens_celery')->getStoreLabel($_product);
+            $maycontainArray[$countmay]['image'] = $celery."_amber";
+            break;
+        default:
+            $celery.="";
+    };
+
+    $wheatvalue = $_product->getResource()->getAttribute('allergens_ccg')->getFrontend()->getValue($_product);
+
+    switch ($wheatvalue) {
+        case $contain:
+            $count++;
+            $containArray[$count]['name'] = $_product->getResource()->getAttribute('allergens_ccg')->getStoreLabel($_product);
+            $containArray[$count]['image'] = $wheat."_red";
+            break;
+        case $maycontain:
+            $countmay++;
+            $maycontainArray[$countmay]['name'] = $_product->getResource()->getAttribute('allergens_ccg')->getStoreLabel($_product);
+            $maycontainArray[$countmay]['image'] = $wheat."_amber";
+            break;
+        default:
+            $wheat.="";
+    };
+
+    $sulphurdioxidevalue = $_product->getResource()->getAttribute('allergens_sdas')->getFrontend()->getValue($_product);
+
+    switch ($sulphurdioxidevalue) {
+        case $contain:
+            $count++;
+            $containArray[$count]['name'] = $_product->getResource()->getAttribute('allergens_sdas')->getStoreLabel($_product);
+            $containArray[$count]['image'] = $sulphurdioxide."_red";
+            break;
+        case $maycontain:
+            $countmay++;
+            $maycontainArray[$countmay]['name'] = $_product->getResource()->getAttribute('allergens_sdas')->getStoreLabel($_product);
+            $maycontainArray[$countmay]['image'] = $sulphurdioxide."_amber";
+            break;
+        default:
+            $sulphurdioxide.="";
+    };
+
+    $soyavalue = $_product->getResource()->getAttribute('allergens_soybeans')->getFrontend()->getValue($_product);
+
+    switch ($soyavalue) {
+        case $contain:
+            $count++;
+            $containArray[$count]['name'] = $_product->getResource()->getAttribute('allergens_soybeans')->getStoreLabel($_product);
+            $containArray[$count]['image'] = $soya."_red";
+            break;
+        case $maycontain:
+            $countmay++;
+            $maycontainArray[$countmay]['name'] = $_product->getResource()->getAttribute('allergens_soybeans')->getStoreLabel($_product);
+            $maycontainArray[$countmay]['image'] = $soya."_amber";
+            break;
+        default:
+            $soya.="";
+    };
+
+    $sesamevalue = $_product->getResource()->getAttribute('allergens_sesame_seeds')->getFrontend()->getValue($_product);
+
+    switch ($sesamevalue) {
+        case $contain:
+            $count++;
+            $containArray[$count]['name'] = $_product->getResource()->getAttribute('allergens_sesame_seeds')->getStoreLabel($_product);
+            $containArray[$count]['image'] = $sesame."_red";
+            break;
+        case $maycontain:
+            $countmay++;
+            $maycontainArray[$countmay]['name'] = $_product->getResource()->getAttribute('allergens_sesame_seeds')->getStoreLabel($_product);
+            $maycontainArray[$countmay]['image'] = $sesame."_amber";
+            break;
+        default:
+            $sesame.="";
+    };
+
+    $peanutvalue = $_product->getResource()->getAttribute('allergens_peanuts')->getFrontend()->getValue($_product);
+
+    switch ($peanutvalue) {
+        case $contain:
+            $count++;
+            $containArray[$count]['name'] = $_product->getResource()->getAttribute('allergens_peanuts')->getStoreLabel($_product);
+            $containArray[$count]['image'] = $peanut."_red";
+            break;
+        case $maycontain:
+            $countmay++;
+            $maycontainArray[$countmay]['name'] = $_product->getResource()->getAttribute('allergens_peanuts')->getStoreLabel($_product);
+            $maycontainArray[$countmay]['image'] = $peanut."_amber";
+            break;
+        default:
+            $peanut.="";
+    };
+
+    $treenutvalue = $_product->getResource()->getAttribute('allergens_tree_nuts')->getFrontend()->getValue($_product);
+
+    switch ($treenutvalue) {
+        case $contain:
+            $count++;
+            $containArray[$count]['name'] = $_product->getResource()->getAttribute('allergens_tree_nuts')->getStoreLabel($_product);
+            $containArray[$count]['image'] = $treenut."_red";
+            break;
+        case $maycontain:
+            $countmay++;
+            $maycontainArray[$countmay]['name'] = $_product->getResource()->getAttribute('allergens_tree_nuts')->getStoreLabel($_product);
+            $maycontainArray[$countmay]['image'] = $treenut."_amber";
+            break;
+        default:
+            $treenut.="";
+    };
+
+    $mustardvalue = $_product->getResource()->getAttribute('allergens_mustard')->getFrontend()->getValue($_product);
+
+    switch ($mustardvalue) {
+        case $contain:
+            $count++;
+            $containArray[$count]['name'] = $_product->getResource()->getAttribute('allergens_mustard')->getStoreLabel($_product);
+            $containArray[$count]['image'] = $mustard."_red";
+            break;
+        case $maycontain:
+            $countmay++;
+            $maycontainArray[$countmay]['name'] = $_product->getResource()->getAttribute('allergens_mustard')->getStoreLabel($_product);
+            $maycontainArray[$countmay]['image'] = $mustard."_amber";
+            break;
+        default:
+            $mustard.="";
+    };
+
+    $milkvalue = $_product->getResource()->getAttribute('allergens_milk')->getFrontend()->getValue($_product);
+
+    switch ($milkvalue) {
+        case $contain:
+            $count++;
+            $containArray[$count]['name'] = $_product->getResource()->getAttribute('allergens_milk')->getStoreLabel($_product);
+            $containArray[$count]['image'] = $milk."_red";
+            break;
+        case $maycontain:
+            $countmay++;
+            $maycontainArray[$countmay]['name'] = $_product->getResource()->getAttribute('allergens_milk')->getStoreLabel($_product);
+            $maycontainArray[$countmay]['image'] = $milk."_amber";
+            break;
+        default:
+            $milk.="";
+    };
+
+    $lupinvalue = $_product->getResource()->getAttribute('allergens_lupin')->getFrontend()->getValue($_product);
+
+    switch ($lupinvalue) {
+        case $contain:
+            $count++;
+            $containArray[$count]['name'] = $_product->getResource()->getAttribute('allergens_lupin')->getStoreLabel($_product);
+            $containArray[$count]['image'] = $lupin."_red";
+            break;
+        case $maycontain:
+            $countmay++;
+            $maycontainArray[$countmay]['name'] = $_product->getResource()->getAttribute('allergens_lupin')->getStoreLabel($_product);
+            $maycontainArray[$countmay]['image'] = $lupin."_amber";
+            break;
+        default:
+            $lupin.="";
+    };
+
+    $fishvalue = $_product->getResource()->getAttribute('allergens_fish')->getFrontend()->getValue($_product);
+
+    switch ($fishvalue) {
+        case $contain:
+            $count++;
+            $containArray[$count]['name'] = $_product->getResource()->getAttribute('allergens_fish')->getStoreLabel($_product);
+            $containArray[$count]['image'] = $fish."_red";
+            break;
+        case $maycontain:
+            $countmay++;
+            $maycontainArray[$countmay]['name'] = $_product->getResource()->getAttribute('allergens_fish')->getStoreLabel($_product);
+            $maycontainArray[$countmay]['image'] = $fish."_amber";
+            break;
+        default:
+            $fish.="";
+    };
+
+    $eggsvalue = $_product->getResource()->getAttribute('allergens_eggs')->getFrontend()->getValue($_product);
+
+    switch ($eggsvalue) {
+        case $contain:
+            $count++;
+            $containArray[$count]['name'] = $_product->getResource()->getAttribute('allergens_eggs')->getStoreLabel($_product);
+            $containArray[$count]['image'] = $eggs."_red";
+            break;
+        case $maycontain:
+            $countmay++;
+            $maycontainArray[$countmay]['name'] = $_product->getResource()->getAttribute('allergens_eggs')->getStoreLabel($_product);
+            $maycontainArray[$countmay]['image'] = $eggs."_amber";
+            break;
+        default:
+            $eggs.="";
+    };
+
+    $crustacensvalue = $_product->getResource()->getAttribute('allergens_crustaceans')->getFrontend()->getValue($_product);
+
+    switch ($crustacensvalue) {
+        case $contain:
+            $count++;
+            $containArray[$count]['name'] = $_product->getResource()->getAttribute('allergens_crustaceans')->getStoreLabel($_product);
+            $containArray[$count]['image'] = $crustacens."_red";
+            break;
+        case $maycontain:
+            $countmay++;
+            $maycontainArray[$countmay]['name'] = $_product->getResource()->getAttribute('allergens_crustaceans')->getStoreLabel($_product);
+            $maycontainArray[$countmay]['image'] = $crustacens."_amber";
+            break;
+        default:
+            $crustacens.="";
+    };
+
+    $molluscsvalue = $_product->getResource()->getAttribute('allergens_molluscs')->getFrontend()->getValue($_product);
+
+    switch ($molluscsvalue) {
+        case $contain:
+            $count++;
+            $containArray[$count]['name'] = $_product->getResource()->getAttribute('allergens_molluscs')->getStoreLabel($_product);
+            $containArray[$count]['image'] = $molluscs."_red";
+            break;
+        case $maycontain:
+            $countmay++;
+            $maycontainArray[$countmay]['name'] = $_product->getResource()->getAttribute('allergens_molluscs')->getStoreLabel($_product);
+            $maycontainArray[$countmay]['image'] = $molluscs."_amber";
+            break;
+        default:
+            $molluscs.="";
+    };
+
+
+
+
+?>
+<?php
+if($_product->getIngredients()) { ?>
+<div class="ingredients-section">
+	<?= $_product->getIngredients(); ?>
+</div>
+<?php } ?>
+<div class="allergen-wrapper">
+    <?php if(count($containArray) > 0) { ?>
+	<div class="contain-section">
+        <h3>Contains</h3>
+        <?php foreach($containArray as $contain) { ?>
+            <div class="content">
+                <img src="<?= $contain['image'].'.svg'; ?>" style="width: 48px;">
+                <span><?= $contain['name']; ?></span>
+            </div>
+        <?php } ?>		
+	</div>
+    <?php } ?>
+	<?php if(count($maycontainArray) > 0) { ?>
+        <div class="may-contain-section">
+            <h3>May Contain</h3>
+            <?php foreach($maycontainArray as $mcontain) { ?>
+                <div class="content">
+                    <img src="<?= $mcontain['image'].'.svg'; ?>" style="width: 48px;">
+                    <span><?= $mcontain['name']; ?></span>
+                </div>
+            <?php } ?>      
+        </div>
+    <?php } ?>
+</div>

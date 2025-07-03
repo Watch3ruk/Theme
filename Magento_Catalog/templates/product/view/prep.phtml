@@ -1,0 +1,32 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// phpcs:disable Magento2.Templates.ThisInTemplate.FoundThis
+
+/**
+ * Product additional attributes template
+ *
+ * @var $block \Magento\Catalog\Block\Product\View\Attributes
+ */
+?>
+<?php
+    $_helper = $this->helper('Magento\Catalog\Helper\Output');
+    $_product = $block->getProduct();
+    $preparation_label = $_product->getResource()->getAttribute('preparation')->getStoreLabel($_product);
+    $preparation = $_product->getResource()->getAttribute('preparation')->getFrontend()->getValue($_product);
+?>
+<div class="additional-attributes-wrapper table-wrapper">
+    <table class="data table additional-attributes" id="product-attribute-specs-table">
+        <tbody>
+            <?php if ($preparation): ?>
+            <tr>
+                <th class="col label" scope="row"><?= $preparation_label; ?></th>
+                <td class="col data" data-th="<?= $preparation_label; ?>"><?= $preparation; ?></td>
+            </tr>
+        	<?php endif;?>
+        </tbody>
+    </table>
+</div>

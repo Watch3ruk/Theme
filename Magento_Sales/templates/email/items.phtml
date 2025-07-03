@@ -1,0 +1,65 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// phpcs:disable Magento2.Templates.ThisInTemplate
+
+/** @var $block \Magento\Sales\Block\Order\Email\Items */
+?>
+<?php $_order = $block->getOrder() ?>
+<?php if ($_order) : ?>
+    <?php $_items = $_order->getAllItems(); ?>
+    <table class="email-items cellspacing="0" cellpadding="0" border="0" width="650" style="border:1px solid #EAEAEA;">
+        <thead>
+            <tr>
+                <th class="item-info" align="left" bgcolor="#EAEAEA" style="font-size:13px; padding:3px 9px">
+                    <?= $block->escapeHtml(__('Items')) ?>
+                </th>
+                <th class="item-qty" align="center" bgcolor="#EAEAEA" style="font-size:13px; padding:3px 9px">
+                    <?= $block->escapeHtml(__('Qty')) ?>
+                </th>
+                <th class="item-price" bgcolor="#EAEAEA" style="font-size:13px; padding:3px 9px">
+                    <?= $block->escapeHtml(__('Price')) ?>
+                </th>
+            </tr>
+        </thead>
+        <?php foreach ($_items as $_item) : ?>
+            <?php if (!$_item->getParentItem()) : ?>
+                <tbody>
+                    <?= $block->getItemHtml($_item) ?>
+                </tbody>
+            <?php endif; ?>
+        <?php endforeach; ?>
+        <tfoot class="order-totals" style="padding-right:20px;" align="right" colspan="2" scope="row">
+            <?= $block->getChildHtml('order_totals') ?>
+        </tfoot>
+    </table>
+    <?php if ($this->helper(\Magento\GiftMessage\Helper\Message::class)
+            ->isMessagesAllowed('order', $_order, $_order->getStore())
+        && $_order->getGiftMessageId()
+    ) : ?>
+        <?php $_giftMessage = $this->helper(\Magento\GiftMessage\Helper\Message::class)
+            ->getGiftMessage($_order->getGiftMessageId()); ?>
+        <?php if ($_giftMessage) : ?>
+            <br />
+            <table class="message-gift">
+                <tr>
+                    <td>
+                        <h3><?= $block->escapeHtml(__('Gift Message for this Order')) ?></h3>
+                        <strong><?= $block->escapeHtml(__('From:')) ?></strong> <?= $block->escapeHtml($_giftMessage->getSender()) ?>
+                        <br /><strong><?= $block->escapeHtml(__('To:')) ?></strong> <?= $block->escapeHtml($_giftMessage->getRecipient()) ?>
+                        <br /><strong><?= $block->escapeHtml(__('Message:')) ?></strong>
+                        <br /><?= $block->escapeHtml($_giftMessage->getMessage()) ?>
+                    </td>
+                </tr>
+            </table>
+            <styles>
+            .order-totals {
+              
+            }
+            </styles>
+        <?php endif; ?>
+    <?php endif; ?>
+<?php endif; ?>

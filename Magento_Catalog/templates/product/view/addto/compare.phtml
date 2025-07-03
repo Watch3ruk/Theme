@@ -1,0 +1,73 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// phpcs:disable Magento2.Templates.ThisInTemplate.FoundThis
+
+/**
+ * Product additional attributes template
+ *
+ * @var $block \Magento\Catalog\Block\Product\View\Attributes
+ */
+?>
+<?php
+    $_helper = $this->helper('Magento\Catalog\Helper\Output');
+    $_product = $block->getProduct();
+
+    $units = $_product->getResource()->getAttribute('units')->getFrontend()->getValue($_product);
+    $bbe = $_product->getResource()->getAttribute('bbe')->getFrontend()->getValue($_product);
+    $discontinued = $_product->getResource()->getAttribute('discontinued')->getFrontend()->getValue($_product);
+
+    $is = 'Yes';
+    $isnot = 'No';
+    $isArray = [];
+    $count = 0;
+
+    switch ($discontinued) {
+        case $is:
+            $isArray[$count]['name'] = $_product->getResource()->getAttribute('discontinued')->getStoreLabel($_product);
+            break;
+        default:
+            $discontinued.="";
+    };
+
+   ?>
+<div class="additional-attributes-wrapper table-wrapper">
+    <table class="data table additional-attributes" id="product-attribute-specs-table">
+        <tbody>
+        <?php if ($units): ?>
+               
+               <tr>
+                   <th class="col label" scope="row"><?= 'Units'; ?></th>
+                   <td class="col data" data-th="<?= 'Units' ?>"><?= $units; ?></td>
+               </tr>
+               
+               <?php endif;?>  
+      
+        </tbody>
+    </table>
+</div>
+<div class="additional-attributes-wrapper bbe">
+<?php if ($bbe): ?>
+               
+             <span class="bbe">Please note this Product is short-dated.</br>
+             Best Before date is :<strong> <?= $bbe; ?> </strong></>
+              
+              <?php endif;?>  
+</div>
+<!--
+<div class="additional-attributes-wrapper bbe">
+    <?php if ($discontinued == 'Yes'): ?>
+	<div class="discontinued-class">
+        <div class="">
+            <div class="content">
+                <span class="discontinued-span">Please note this Product is discontinued and will not be restocked once sold out.</br>
+            </div>
+	</div>
+        </div>
+        <?php endif;?>
+
+</div>
+    -->

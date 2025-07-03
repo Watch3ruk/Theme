@@ -1,0 +1,5 @@
+ <body>
+    <head>
+        <css src="Magento_Cms::css/home.css" />
+    </head>
+ </body>

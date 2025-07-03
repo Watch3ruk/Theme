@@ -1,0 +1,73 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// phpcs:disable Magento2.Templates.ThisInTemplate.FoundThis
+
+/**
+ * Product additional attributes template
+ *
+ * @var $block \Magento\Catalog\Block\Product\View\Attributes
+ */
+?>
+<?php
+    $_helper = $this->helper('Magento\Catalog\Helper\Output');
+    $_product = $block->getProduct();
+
+    $weight = $_product->getResource()->getAttribute('weight')->getFrontend()->getValue($_product);
+    $Liquid_v_label = $_product->getResource()->getAttribute('Liquid_v')->getStoreLabel($_product);
+    $Liquid_v = $_product->getResource()->getAttribute('Liquid_v')->getFrontend()->getValue($_product);
+    $ean_label = $_product->getResource()->getAttribute('ean')->getStoreLabel($_product);
+    $ean = $_product->getResource()->getAttribute('ean')->getFrontend()->getValue($_product);
+    $pack_size_label = $_product->getResource()->getAttribute('pack_size')->getStoreLabel($_product);
+    $pack_size = $_product->getResource()->getAttribute('pack_size')->getFrontend()->getValue($_product);
+    $TUC_label = $_product->getResource()->getAttribute('TUC')->getStoreLabel($_product);
+    $TUC = $_product->getResource()->getAttribute('TUC')->getFrontend()->getValue($_product);
+    $mpn_label = $_product->getResource()->getAttribute('mpn')->getStoreLabel($_product);
+    $mpn = $_product->getResource()->getAttribute('mpn')->getFrontend()->getValue($_product);
+?>
+<div class="additional-attributes-wrapper table-wrapper">
+    <table class="data table additional-attributes" id="product-attribute-specs-table">
+        <tbody>
+        	<?php if ($weight): ?>
+               
+            <tr>
+                <th class="col label" scope="row"><?= 'Weight (Kg)'; ?></th>
+                <td class="col data" data-th="<?= 'Weight' ?>"><?= $weight; ?></td>
+            </tr>
+        	<?php endif;?>  
+        	<?php if ($Liquid_v): ?>
+            <tr>
+                <th class="col label" scope="row"><?= $Liquid_v_label; ?></th>
+                <td class="col data" data-th="<?= $Liquid_v_label; ?>"><?= $Liquid_v; ?></td>
+            </tr>
+        	<?php endif;?> 
+        	<?php if ($ean): ?>
+            <tr>
+                <th class="col label" scope="row"><?= $ean_label; ?></th>
+                <td class="col data" data-th="<?= $ean_label; ?>"><?= $ean; ?></td>
+            </tr>
+        	<?php endif;?>  
+        	<?php if ($pack_size): ?>
+            <tr>
+                <th class="col label" scope="row"><?= $pack_size_label; ?></th>
+                <td class="col data" data-th="<?= $pack_size_label; ?>"><?= $pack_size; ?></td>
+            </tr>
+        	<?php endif;?>  
+        	<?php if ($TUC): ?>
+            <tr>
+                <th class="col label" scope="row"><?= $TUC_label; ?></th>
+                <td class="col data" data-th="<?= $TUC_label; ?>"><?= $TUC; ?></td>
+            </tr>
+        	<?php endif;?>  
+        	<?php if ($mpn): ?>
+            <tr>
+                <th class="col label" scope="row"><?= $mpn_label; ?></th>
+                <td class="col data" data-th="<?= $mpn_label; ?>"><?= $mpn; ?></td>
+            </tr>
+        	<?php endif;?>
+        </tbody>
+    </table>
+</div>

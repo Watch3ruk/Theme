@@ -1,0 +1,37 @@
+<?php
+$_helper = $this->helper('Magento\Catalog\Helper\Output');
+$_product = $block->getProduct();
+$charLimit = 410;
+?>
+<div class="product attribute overview">
+    <div class="value" itemprop="description">
+        <?php
+        $descriptionContent = strip_tags($_helper->productAttribute($_product, $_product->getDescription(), "description"));
+        if(strlen ( $descriptionContent ) > $charLimit):
+            echo '<span class="smallcontent">'.trim(substr($descriptionContent, 0, $charLimit)).'...</span>';
+            echo '<span class="desc-read-more-content" style="display:none">'.$descriptionContent.'</span> <a href="#" class="desc-read-more-link">'.__('Read More').'</a>';
+        else:
+            echo $descriptionContent;
+        endif;
+        ?>
+    </div>
+    <script>        
+        require([
+            'jquery',
+        ], function ($) {
+            $(function () {
+                $(".desc-read-more-link").click(function(){
+                    $(".desc-read-more-content").toggleClass("show");
+                    $(".smallcontent").toggle();
+                    if($(".desc-read-more-content").hasClass('show')){
+                        $(".desc-read-more-link").text("<?php echo __('Read Less') ?>");
+                    }
+                    else{
+                        $(".desc-read-more-link").text("<?php echo __('Read More') ?>");
+                    }
+                    return false;
+                });
+            });
+        });      
+    </script>
+</div>

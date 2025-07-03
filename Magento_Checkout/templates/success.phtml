@@ -1,0 +1,57 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+?>
+<?php /** @var $block \Magento\Checkout\Block\Onepage\Success */ ?>
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$orderObj = $objectManager->create('Magento\Checkout\Model\Session')->getLastRealOrder();
+?>
+<div class="checkout-success">
+    <?php if ($block->getOrderId()) :?>
+        <?php if ($block->getCanViewOrder()) :?>
+            <p><?= $block->escapeHtml(__('Your order number is: %1.', sprintf('<a href="%s" class="order-number"><strong>%s</strong></a>', $block->escapeUrl($block->getViewOrderUrl()), $block->getOrderId())), ['a', 'strong']) ?></p>
+        <?php  else :?>
+            <p><?= $block->escapeHtml(__('Your order # is: <span>%1</span>.', $block->getOrderId()), ['span']) ?></p>
+        <?php endif;?>
+            <p><?= $block->escapeHtml(__('We\'ll email you an order confirmation with details and tracking info.')) ?></p>
+    <?php endif;?>
+
+    <?= $block->getAdditionalInfoHtml() ?>
+
+    <div class="actions-toolbar">
+        <div class="primary">
+            <a class="action primary continue" href="<?= $block->escapeUrl($block->getContinueUrl()) ?>"><span><?= $block->escapeHtml(__('Continue Shopping')) ?></span></a>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+dataLayer.push({ ecommerce: null });  // Clear the previous ecommerce object.
+dataLayer.push({
+  event: "purchase",
+  ecommerce: {
+      transaction_id: "<?= $orderObj->getIncrementId() ?>",
+      value: <?= $orderObj->getSubtotal() ?>,
+      tax: <?= $orderObj->getTaxAmount() ?>,
+      shipping: <?= $orderObj->getShippingAmount() ?>,
+      currency: "<?= $orderObj->getOrderCurrencyCode() ?>",
+      coupon: "",
+      items: [
+      <?php 
+      $items = $orderObj->getAllItems();
+        foreach($items as $i):
+      ?>
+       {
+        item_id: "<?= $i->getSku() ?>",
+        item_name: "<?= $i->getName() ?>",
+        price: <?= $i->getPrice() ?>,
+        quantity: <?= $i->getQtyOrdered() ?>
+      },
+      <?php endforeach;?>
+      ]
+  }
+});
+</script>

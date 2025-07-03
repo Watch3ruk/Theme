@@ -1,0 +1,22 @@
+<?php
+$_product = $block->getProduct();
+$brand= $_product->getResource()->getAttribute('brand')->getFrontend()->getValue($_product);
+
+$brandInstance = $this->getLayout()->createBlock('Adlab\ProductBrand\Block\Widget\BrandList');
+
+if($brand){
+
+$brandUrls = $brandInstance->getUrlBrand($brand);
+
+?>
+<div class="product-brand">
+    <p class="see-more">See more</p>
+    <?php if (array_key_exists($brand,$brandUrls)){ ?>
+	<a href="<?=$brandUrls[$brand];?>"><?=$brand;?></a>
+	<?php } else { ?>
+	<a href="#"><?=$brand;?></a>
+	<?php } ?>
+</div> 
+ <?php
+}
+ ?>

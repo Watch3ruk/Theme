@@ -1,0 +1,583 @@
+.popular-category {
+    display: flex;
+    justify-content: center;
+    padding-top: 32px;
+}
+
+.popular-category img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin-bottom: 0;
+}
+
+.popular-category .category h5 {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.popular-category a {
+    color: #000;
+    text-decoration: none;
+}
+
+.popular-category .category {
+    margin: 0 24px;
+    text-align: center;
+}
+
+.why-thomas h3 {
+    text-align: center;
+    color: #419456;
+    font-weight: 600;
+    font-size: 20px;
+    padding-bottom: 24px;
+}
+
+.why-thomas {
+    padding-top: 10px;
+}
+
+.why-thomas .why-thomas-main {
+    padding: 0;
+    margin: 0 -12px;
+}
+
+.why-thomas .why-thomas-main h4 {
+    font-size: 20px;
+    color: #222222;
+    font-weight: 600;
+    padding: 16px 0 5px 0;
+    margin: 0;
+}
+
+.why-thomas .why-thomas-main a {
+    font-size: 14px;
+    color: #419456;
+    font-weight: 400;
+    text-decoration: underline;
+}
+
+.why-thomas .why-thomas-main .slick-slide>div {
+    padding: 12px;
+}
+
+h3.brand-tilte {
+    text-align: center;
+    color: #419456;
+    font-weight: 600;
+    font-size: 20px;
+    padding-bottom: 24px;
+    margin-bottom: 0;
+}
+
+.our-brand-slider {
+    padding-top: 50px;
+}
+
+.amslider.ambrands-slider .ambrands-inner span.ambrands-image-block img {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+}
+
+h3.popular-product-title {
+    text-align: center;
+    color: #419456;
+    font-weight: 600;
+    font-size: 20px;
+    padding-bottom: 24px;
+    margin-bottom: 0;
+}
+
+.popular-product {}
+
+.product-item-details .product-sku {
+    font-size: 12px;
+    color: #222222;
+    font-weight: 600;
+}
+
+.product-item-details strong.product-item-name a {
+    font-size: 14px;
+    color: #222222;
+    line-height: 22px;
+    font-weight: 400;
+    text-decoration: none;
+}
+
+.product-item .product-item-details .price-box .price {
+    font-size: 14px;
+    color: #222222;
+    font-weight: 600;
+}
+
+.product-item .product-item-details .actions-primary form {
+    display: flex;
+}
+
+.product-item .product-item-details .actions-primary .control {
+    display: flex;
+    position: relative;
+}
+
+.product-item .product-item-details .actions-primary .control input#qty {
+    width: 90px;
+    border: solid 1px #ddd;
+    text-align: center;
+    border-radius: 4px;
+    height: 38px;
+    outline: 0;
+    box-shadow: none;
+}
+
+.product-item .product-item-details .actions-primary .control .custom-qty.reduced button {
+    border: none;
+    background: none;
+    position: absolute;
+    left: 0;
+    top: 4px;
+    font-size: 20px;
+}
+
+.product-item .product-item-details .actions-primary .control .custom-qty.increase button {
+    border: none;
+    background: none;
+    position: absolute;
+    right: 0;
+    top: 6px;
+    font-size: 20px;
+}
+
+.product-item-actions .actions-primary button.action.tocart.primary {
+    border: solid 1px #4DAE65;
+    background: #fff;
+    color: #222;
+    font-size: 14px;
+    font-weight: 400;
+    width: 94px;
+    border-radius: 25px;
+}
+
+body .product-item-actions .actions-primary {
+    display: block;
+}
+
+.products-grid .product-item .product-item-info img.product-image-photo {
+    width: 197px;
+    height: 197px;
+    object-fit: contain;
+}
+
+.popular-product .products-grid .product-item .product-item-info {
+    padding: 0 12px;
+}
+
+body.page-layout-1column .popular-product .product-items.slick-slider .slick-slide .product-item {
+    margin: 0 !important;
+    padding: 0 !important;
+    max-width: 100% !important;
+}
+
+.popular-product .block.widget .products-grid .product-items {
+    margin: 0 -12px!important;
+    padding: 0 !important;
+}
+
+body .product-item-actions .actions-primary .stock.unavailable {
+    color: red;
+    padding-top: 11px;
+}
+
+h3.featured-post-title {
+    text-align: center;
+    color: #419456;
+    font-weight: 600;
+    font-size: 20px;
+    padding-bottom: 24px;
+    margin-bottom: 0;
+}
+
+.featured-post {
+    padding-top: 40px;
+}
+
+.featured-post .widget.amblog-post-list {
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
+    border-radius: 0;
+}
+.amasty-blog.slick {
+    display: flex;
+    justify-content: center;
+}
+.why-thomas-main.slick {
+    display: flex;
+    justify-content: center;
+}
+.amblog-list.post-slider {
+    margin: 0;
+    padding: 0;
+}
+
+.amblog-list.post-slider .post-items.amblog-slick-slider {
+    margin: 0;
+    padding: 0;
+}
+
+.amblog-list.post-slider a.post-title.amblog-headline {
+    font-size: 20px;
+    line-height: 28px;
+    color: #222222;
+    font-weight: 600;
+    min-height: 60px;
+    margin: 0;
+}
+
+.amblog-list.post-slider .short-description {
+    font-size: 14px;
+    font-style: normal;
+    color: #222;
+    line-height: 22px;
+}
+
+.amblog-list.post-slider  .amblog-featured-card-bottom a {
+    font-size: 14px;
+    color: #419456;
+    font-weight: 400;
+    text-decoration: underline;
+}
+
+.featured-post .amblog-title {
+    display: none;
+}
+
+.amblog-list.post-slider a.post-image img {
+    width: 100%;
+    height: 212px;
+    object-fit: cover;
+}
+
+body .amblog-post-list .post-image {
+    margin-bottom: 15px;
+}
+
+.amblog-list.post-slider {
+    padding-top: 15px;
+    margin: 0 -12px;
+}
+
+.home-brochure {
+    background: #F7F7F7;
+    margin: 60px 0 30px 0;
+}
+
+.home-brochure .pagebuilder-column.content-container {
+    padding-left: 48px;
+}
+
+h3.brochure-heading {
+    font-size: 20px;
+    font-weight: 600;
+    color: #222;
+    line-height: 28px;
+}
+
+.brochure-desc {
+    font-size: 14px;
+    color: #222;
+}
+
+.home-brochure a.pagebuilder-button-link {
+    background: #4DAE65;
+    height: 38px;
+    padding: 0;
+    line-height: 38px;
+    color: #fff;
+    font-weight: 400;
+    width: 136px;
+    font-size: 14px;
+    border-radius: 35px;
+    margin-top: 20px;
+    text-decoration: none;
+}
+
+.home-brochure figure img {
+    max-height: 450px;
+    width: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+
+body .product-image-wrapper {
+    padding-bottom: 197px !important;
+}
+
+.popular-product .products-grid .product-item a.product-item-photo {
+    display: block;
+}
+
+.slick-initialized .slick-slide {
+    vertical-align: top;
+}
+.amasty-blog.slick .post a.post-headline {
+    color: #222;
+    font-weight: 600;
+    margin: 5px 0;
+    display: block;
+    min-height:60px;
+    font-size: 20px;
+    line-height: 28px;
+    padding-top: 8px;
+}
+
+.amasty-blog.slick .post .feature-card a.post-link {
+    font-size: 14px;
+    color: #419456;
+    font-weight: 400;
+    text-decoration: underline;
+    display: block;
+    margin-top: 5px;
+}
+.product-item .product-item-details .actions-primary .control {
+    margin-right: 10px;
+}
+
+@media screen and (min-width:1380px){
+.product-item .product-item-details .actions-primary form {
+    justify-content: space-between;
+}
+}
+@media screen and (min-width:768px){
+    .amasty-blog.slick {
+        padding: 0 0px!important;
+        margin-top: 20px;
+        margin-left: -10px !important;
+        margin-right: -10px !important;
+    }
+    .slick-initialized .slick-slide .post {
+        padding: 0 12px;
+        width: auto !important;
+        display: block !important;
+    }
+}
+@media screen and (min-width:769px) and (max-width:1220px){
+    main#maincontent {
+        padding: 0 15px;
+    }
+    
+    
+    
+    .popular-category .category {
+        margin: 0 10px;
+    }
+    
+    .popular-category .category h5 {
+        font-size: 14px;
+    }
+    
+    .why-thomas .why-thomas-main h4 {
+        font-size: 16px;
+    }
+    
+    .amblog-list.post-slider a.post-title.amblog-headline {
+        font-size: 14px;
+        line-height: 21px;
+    }
+}
+@media screen and (max-width:767px){
+    
+main#maincontent {
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+#html-body [data-pb-style=XVHU3H7] {
+    height: 250px !important;
+    background-size: cover !important;
+}
+
+.pagebuilder-overlay.pagebuilder-poster-overlay {
+    height: 250px !important;
+}
+
+.popular-category {
+    flex-wrap: wrap;
+}
+
+.popular-category a {
+    width: 33%;
+}
+
+.popular-category .category {
+    margin: 8px;
+}
+
+.why-thomas ul.slick-dots {
+    display: none !important;
+}
+
+.why-thomas button.slick-arrow {
+    display: none !important;
+}
+
+.why-thomas h3 {
+    text-align: left;
+}
+
+.our-brand-slider {
+    padding-top: 10px;
+}
+
+h3.brand-tilte {
+    text-align: left;
+    padding-bottom: 0;
+}
+
+.our-brand-slider div#amslider_id3731 {
+    padding: 0 !important;
+}
+
+.amslider.ambrands-slider .ambrands-inner span.ambrands-image-block img {
+    max-width: 100% !important;
+}
+
+body .block-search .action.search {
+    display: block;
+    position: absolute;
+    top: 12px !important;
+    background: #4DAE65 !important;
+    opacity: 1 !important;
+    border-radius: 50%;
+    right: 5px !important;
+    padding: 5px !important;
+    width: 32px;
+    height: 32px;
+    border: none;
+}
+
+body .block-search .action.search span {
+    display: none;
+}
+
+body .block-search .action.search:before {
+    line-height: 22px;
+    color: #fff;
+    content: '\e615';
+    font-family: 'icons-blank-theme';
+    margin: 0;
+    vertical-align: top;
+    display: inline-block;
+    font-weight: normal;
+    overflow: hidden;
+    speak: none;
+    text-align: center;
+    font-size: 22px;
+    }
+h3.popular-product-title {
+    text-align: left;
+}
+
+.popular-product button.slick-arrow {
+    display: none !important;
+}
+
+h3.featured-post-title {
+    text-align: left;
+}
+
+.featured-post ul.slick-dots {
+    display: none !important;
+}
+
+.home-brochure .pagebuilder-column.content-container {
+    padding-left: 15px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    order: 2;
+}
+
+.why-thomas .why-thomas-main h4 {
+    padding-top: 20px;
+}
+.amasty-blog.slick {
+    padding: 0;
+    margin-right: -16px;
+}
+.product-item .product-item-details .actions-primary .control .custom-qty button {
+    display: none;
+}
+
+.product-item .product-item-details .actions-primary .control input#qty {
+    width: 60px;
+    text-align: left;
+    padding-left: 16px;
+}
+
+.amasty-blog.slick .post {
+    padding-right: 24px;
+    width: auto !important;
+    display: block;
+}
+.our-brand-slider .ambrands-slider.amslider {
+    padding: 0 0px !important;
+}
+.amasty-blog.slick .post a.post-headline {
+    min-height: 84px;
+}
+.featured-post {
+    padding-top: 0;
+}
+footer .footer-main-container .contact-us ul.social-icons {
+    margin-bottom: 10px;
+    margin-top: 5px;
+}
+
+}
+
+@media screen and (min-width:600px) and (max-width:768px){
+    .popular-category .category h5 {
+        font-size: 14px;
+    }
+    
+    .popular-category .category {
+        margin: 0 10px;
+    }
+    
+    main#maincontent {
+        padding: 0 16px;
+    }
+    
+    .pagebuilder-overlay.pagebuilder-poster-overlay {
+        height: 300px !important;
+        background-size: cover !important;
+    }
+    
+    .pagebuilder-slide-wrapper {
+        background-size: cover !important;
+        height: 300px !important;
+    }
+    
+    .why-thomas .why-thomas-main h4 {
+        font-size: 14px;
+    }
+    
+    .why-thomas .why-thomas-main a {
+        font-size: 13px;
+    }
+    
+    .amblog-list.post-slider a.post-title.amblog-headline {
+        font-size: 14px;
+    }
+    
+    #html-body [data-pb-style=DCPPU8Y] {
+        flex-wrap: nowrap;
+    }
+    
+     
+    .amblog-list.post-slider a.post-image img {
+        height: 150px;
+    }
+}

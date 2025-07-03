@@ -1,0 +1,21 @@
+<?php 
+
+$helper = $this->helper('Adlab\Customer\Helper\Data');
+// if($collection->count() > 0){
+    if($helper->isLoggedIn()){
+        $customSession = $helper->customerSession();
+        $productSkus= $customSession->getAvailableProductSku();
+        if(count(array($productSkus)) > 0){
+            $newcollection=$block->getCurrentCategory()->getProductCollection()->addAttributeToFilter("sku", array("in" => $productSkus));
+            if($newcollection->count() > 0 ){ ?>
+            <span class="category-product-count"><?= '('.$newcollection->count().')'; ?></span>
+            <?php }
+            }
+        }else { 
+            $count=$block->getCurrentCategory()->getProductCollection()->count();
+            if($count > 0){ ?>
+            <span class="category-product-count"><?= '('.$count.')'; ?></span>
+        <?php } 
+        }
+
+?>

@@ -1,0 +1,27 @@
+<?php
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/*  @codingStandardsIgnoreFile */
+
+/**
+ * Product additional attributes template
+ *
+ * @var $block \Magento\Catalog\Block\Product\View\Attributes
+ */
+?>
+<?php
+    $_helper = $this->helper('Magento\Catalog\Helper\Output');
+    $_product = $block->getProduct();
+
+    $product_name = $_product->getResource()->getAttribute('name')->getFrontend()->getValue($_product);
+?>
+<div class="page-title-wrapper-mobile product">
+    <h1 class="page-title-mobile">
+        <span class="base" data-ui-id="page-title-wrapper-mobile" itemprop="name"><?=$product_name;?></span>    </h1>
+
+
+
+    </div>

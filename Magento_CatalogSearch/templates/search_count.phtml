@@ -1,0 +1,34 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+// @codingStandardsIgnoreFile
+
+// use Magento\CatalogSearch\Block\Result;
+
+// /** These changes need to valid applying filters and configuration before search process is started. */
+
+// /** @var $block  Result*/
+$productCount = $block->getProductCount();
+?>
+<?php  
+    $helper = $this->helper('Magento\CatalogSearch\Helper\Data');
+    $values = $helper->getEscapedQueryText();
+    $searchcount = 0;
+    
+?> 
+<div class="search-result-title top-search-result-title">
+    <span>Search results for </span>
+    <p class="result"><strong>’<?=$values?>’</strong>
+        <span class="category-product-count top-search-category-product-count"><?=$productCount?></span>
+    </p>
+</div>
+<script type="text/javascript">
+    require(["jquery"], function ($) {
+        $(document).ready(function () {
+            var product_count = $('.search-category-product-count').text();
+            $('.top-search-category-product-count').html(product_count);
+        });
+    });
+</script>

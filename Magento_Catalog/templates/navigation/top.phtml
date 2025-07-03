@@ -1,0 +1,116 @@
+<?php
+
+/**
+ * Category left navigation
+ *
+ * @var $block \Magento\Catalog\Block\Navigation
+ */
+
+if (!$block->getCategory()) {
+  return;
+}
+// $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$_categories = $block->getCurrentChildCategories();
+$_count = is_array($_categories) ? count($_categories) : $_categories->count();
+$isBaseCategory = true;
+$categorycount = 0;
+foreach ($_categories as $_category) {
+  if ($_category->getChildCount() > 0) {
+    $isBaseCategory = false;
+    break;
+  }
+}
+
+$currentCatId = $block->getCategory()->getId();
+
+if ($_count != 0 && $isBaseCategory ) { ?>
+  <div class="block filter top ">
+    <div class="options">
+      <ul class="items child-cat-slider-new slick-slider">
+        <?php /** @var \Magento\Catalog\Model\Category $_category */ 
+        $categorycount = count($_categories );
+        ?>
+        <?php foreach ($_categories as $_category) :
+            ?>
+          <?php if ($_category->getIsActive()) : ?>
+          <?php endif; ?>
+        <?php endforeach; ?>
+      </ul>
+    </div>
+  </div>
+<?php } ?>
+<script>
+require(['jquery', 'jquery/ui', 'slick'], function($) {
+    $(document).ready(function() {
+      var childCatCount='<?php echo $categorycount?>';
+    childCatCount=parseInt(childCatCount);
+    console.log(childCatCount);
+  if(childCatCount != 0){
+  if(childCatCount > 6){
+    desktop = 6.5;
+    desktopscroll=6;
+    tablet=4.5;
+    tablescroll=4;
+    mobilescreen = 1.5
+  }
+  else if((childCatCount > 4) && (childCatCount <= 6)){
+    desktop = childCatCount;
+    desktopscroll=childCatCount;
+    tablet=4.5;
+    tablescroll=4;
+    mobilescreen = 1.5;
+  
+  }
+  else if((childCatCount > 1) && (childCatCount <= 4)){
+    desktop=childCatCount;
+    desktopscroll=childCatCount;
+    tablet=childCatCount;
+    tablescroll=childCatCount;
+    mobilescreen = 1.5
+  
+  }
+  else if (childCatCount == 1){
+    desktop= childCatCount
+    desktopscroll=childCatCount;
+    tablet=childCatCount
+    tablescroll=childCatCount
+    mobilescreen = 1;
+  }
+  else{
+
+  }
+        jQuery(".filter.top .child-cat-slider-new").slick({
+            dots: false,
+            infinite: false,
+            arrows:false,
+            slidesToShow: desktop,
+            // slidesToScroll: 2,
+      variableWidth: true,
+            responsive: [
+              {
+                    breakpoint: 1600,
+                    settings: {
+                        slidesToShow: desktop,
+                        // slidesToScroll:  2
+                    }
+                },
+              {
+                    breakpoint: 992,
+                    settings: {
+                        slidesToShow: tablet,
+                        // slidesToScroll:  1
+                    }
+                },
+                {
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: mobilescreen,
+                        slidesToScroll: 1
+                    }
+                }
+            ]
+        });
+      }
+    });
+});
+</script>

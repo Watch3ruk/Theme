@@ -1,0 +1,123 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var $block \Magento\Checkout\Block\Cart\Sidebar */
+?>
+<?php
+$customerHelper = $this->helper('Adlab\Customer\Helper\Data');
+$blockObj= $this->getLayout()->createBlock('Magento\Customer\Block\Account\AuthorizationLink');
+$customerAccountUrl = $blockObj->getLinkAttributes();
+$loggedIn=false;
+if($customerHelper->isLoggedIn()){
+$loggedIn=true;
+}
+?>
+<div data-block="minicart" class="minicart-wrapper">
+    <ul class="header-right">
+        <li class="account <?php if($loggedIn){echo "logged-in";}else{echo "not-logged-in";}?>">
+            <div class="login-container">
+                <h4> <a href="#"  id="account"><?php echo __('Account'); ?></a></h4>
+				
+					<span class="customer-name">Hi,
+					<?php
+						if($loggedIn)
+						{ 
+							echo $customerHelper->getCustomer()->getData('firstname'); 
+						}
+					 	?>
+					</span>
+					<ul class="custom_links">
+						<?php if($loggedIn){ ?>
+								<li><a href="/customer/account/">My Account</a></li>
+								<li><a href="/customer/account/logout">Logout</a></span></li>
+						<?php } else {?>
+							<li class="login" style="padding-top: 7px;"><a <?= $customerAccountUrl; ?> >Login</a></li>
+						
+						<?php } ?>
+					</ul>
+            </div>
+        </li>
+    <li class="minicart">
+        <div>
+           <p>
+				<a class="action showcart" href="<?= $block->escapeUrl($block->getShoppingCartUrl()) ?>"
+				data-bind="scope: 'minicart_content'">
+					<span class="text"><?= $block->escapeHtml(__('My Cart')) ?></span>
+					<span class="counter qty empty"
+						data-bind="css: { empty: !!getCartParam('summary_count') == false && !isLoading() },
+						blockLoader: isLoading">
+						<span class="counter-number">
+							<!-- ko if: getCartParam('summary_count') -->
+							<!-- ko text: getCartParam('summary_count').toLocaleString(window.LOCALE) --><!-- /ko -->
+							<!-- /ko -->
+						</span>
+						<span class="counter-label">
+						<!-- ko if: getCartParam('summary_count') -->
+							<!-- ko text: getCartParam('summary_count').toLocaleString(window.LOCALE) --><!-- /ko -->
+							<!-- ko i18n: 'items' --><!-- /ko -->
+						<!-- /ko -->
+						</span>
+					</span>
+				</a>
+				<a class="showcart action-subtotal d-none" href="<?php echo $block->getShoppingCartUrl(); ?>"
+					data-bind="scope: 'minicart_content'">
+					<span class="cart-price">
+						<!-- ko if: getCartParam('subtotal_incl_tax') -->
+						<span class="amount" data-bind="html: getCartParam('subtotal_incl_tax')"></span>
+						<!-- /ko -->
+						<!-- ko ifnot: getCartParam('subtotal_incl_tax') -->
+						<span class="amount">
+							<span class="price">£0.00</span>
+						</span>
+						<!-- /ko -->
+					</span>
+				</a>
+				
+				<?php if ($block->getIsNeedToDisplaySideBar()) :?>
+					<div class="block block-minicart"
+						 data-role="dropdownDialog"
+						 data-mage-init='{"dropdownDialog":{
+							"appendTo":"[data-block=minicart]",
+							"triggerTarget":".showcart",
+							"timeout": "2000",
+							"closeOnMouseLeave": false,
+							"closeOnEscape": true,
+							"triggerClass":"active",
+							"parentClass":"active",
+							"buttons":[]}}'>
+						<div id="minicart-content-wrapper" data-bind="scope: 'minicart_content'">
+							<!-- ko template: getTemplate() --><!-- /ko -->
+						</div>
+						<?= $block->getChildHtml('minicart.addons') ?>
+					</div>
+				    <?php else: ?>
+        <?php $scriptString = <<<script
+            require(['jquery'], function ($) {
+                $('a.action.showcart').on('click', function() {
+                    $(document.body).trigger('processStart');
+                });
+            });
+script;
+        ?>
+        <?= /* @noEscape */ $secureRenderer->renderTag('script', [], $scriptString, false); ?>
+    <?php endif ?>
+    <?= /* @noEscape */ $secureRenderer->renderTag('script', [], 'window.checkout = ' .
+     /* @noEscape */ $block->getSerializedConfig(), false); ?>
+    <script type="text/x-magento-init">
+    {
+        "[data-block='minicart']": {
+            "Magento_Ui/js/core/app": <?= /* @noEscape */ $block->getJsLayout() ?>
+        },
+        "*": {
+            "Magento_Ui/js/block-loader": "<?= $block->escapeJs(
+                $block->escapeUrl($block->getViewFileUrl('images/loader-1.gif'))
+            ) ?>"
+        }
+    }
+    </script>
+</div>

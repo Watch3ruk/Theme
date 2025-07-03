@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+         <css src="Magento_Checkout::css/checkout.css"/>
+    </head>
+    <body>
+        <referenceBlock name="page.main.title">
+            <action method="setPageTitle">
+                <argument translate="true" name="title" xsi:type="string">Basket</argument>
+            </action>
+            <block class="Magento\Framework\View\Element\Template" name="cart.count" template="Magento_Checkout::cart/cart_count.phtml"/>
+        </referenceBlock>  
+                <referenceContainer name="content">
+                <block class="Magento\Cms\Block\Block" name="featured_product" after="-">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">featured_product</argument>
+                    </arguments>
+                </block>
+        </referenceContainer>
+       <referenceBlock name="checkout.cart.coupon" remove="true"/>
+        <block class="Magento\Checkout\Block\Cart\Coupon" name="checkout.cart.showcouponbefortotal" as="coupon" template="Magento_Checkout::cart/coupon.phtml"/>
+        <block class="Magento\Framework\View\Element\Template" name="accepted.method" template="Magento_Checkout::cart/we_accept.phtml" />
+        <move element="checkout.cart.showcouponbefortotal" destination="cart.summary" before="checkout.cart.totals.container"/>
+        <move element="accepted.method" destination="cart.summary" after="-"/>
+        <move element="page.messages" destination="page.top" after="after_header"/>
+    </body>
+</page> 

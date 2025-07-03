@@ -1,0 +1,63 @@
+<?php
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/*  @codingStandardsIgnoreFile */
+
+/**
+ * Product additional attributes template
+ *
+ * @var $block \Magento\Catalog\Block\Product\View\Attributes
+ */
+?>
+<?php
+    $_helper = $this->helper('Magento\Catalog\Helper\Output');
+    $_product = $block->getProduct();
+    $iconDir = $this->getURL("pub/media/allergens");/* .'\allergens'; */
+
+    $contain = 'does contain';
+    $maycontain = 'may contain';
+    $notcontain = 'does not contain';
+
+    $containArray = [];
+    $maycontainArray = [];
+    // echo $_product->getAttributeText('allergens_celery');
+    $milk_attr = $_product->getResource()->getAttribute('allergens_milk')->getFrontend()->getValue($_product);
+    $soya_attr = $_product->getResource()->getAttribute('allergens_soybeans')->getFrontend()->getValue($_product);
+    $vegan_attr = $_product->getResource()->getAttribute('is_Vegans')->getFrontend()->getValue($_product);
+
+    switch ($milk_attr) {
+        case $contain:
+            $milk ="#c92c2c";
+            break;
+        case $maycontain:
+            $milk ="#e3b11e";
+            break;
+        default:
+            $milk ="";
+    };
+
+    switch ($soya_attr) {
+        case $contain:
+            $soya ="#c92c2c";
+            break;
+        case $maycontain:
+            $soya ="#e3b11e";
+            break;
+        default:
+            $soya ="";
+    };
+?>
+<div class="allergen-wrapper row">
+	<div class="maycontain-section">
+        <?php if($vegan_attr == 'Yes'){?>
+        <span style="background-color:green;color:#fff;padding: 3px;border-radius: 25px;"><?= $_product->getResource()->getAttribute('is_Vegans')->getStoreLabel($_product)?></span>
+        <?php } if($milk_attr && $milk_attr != 'does not contain'){?>
+        <span style="background-color:<?= $milk;?>;color:#fff;padding: 3px;border-radius: 25px;"><?= $_product->getResource()->getAttribute('allergens_milk')->getStoreLabel($_product)?></span>
+        <?php } if($soya_attr && $soya_attr != 'does not contain'){?>
+        <span style="background-color:<?= $soya;?>;color:#fff;padding: 3px;border-radius: 25px;"><?= $_product->getResource()->getAttribute('allergens_soybeans')->getStoreLabel($_product)?></span>
+        <?php }?>
+	</div>
+</div>

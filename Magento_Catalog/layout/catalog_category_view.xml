@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-right" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+         <css src="Magento_Catalog::css/productlist.css"/>
+    </head>
+    <body>
+    
+
+        <!-- custom work -->
+
+
+        <referenceBlock name="category.image" remove="true" />
+        <referenceBlock name="sidebar.additional" remove="true" />
+        <!-- <referenceBlock name="sidebar.main" remove="true" /> -->
+        <block class="Magento\Catalog\Block\Category\View" name="category.products.count"
+                        as="product_count" template="Magento_Catalog::category/category_title.phtml" />
+        <move element="category.products.count" destination="page.main.title" after="rss.link" />
+        <move element="div.sidebar.main" destination="columns"  before="main" />
+        <move element="catalog.list.top" destination="columns.top" after="category.description" />
+        <block class="Magento\Catalog\Block\Navigation" name="catalog.list.top" template="Magento_Catalog::navigation/top.phtml"/>
+        <referenceContainer name="content">
+                <block class="Magento\Cms\Block\Block" name="featured_product" after="-">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">featured_product</argument>
+                    </arguments>
+                </block>
+        </referenceContainer>
+        <block class="Magento\Framework\View\Element\Template" name="filter.button.mobile" template="Magento_Catalog::category/filter_button.phtml" />
+        <move element="filter.button.mobile" destination="sidebar.main" before="-" />
+        <move element="page.messages" destination="page.top" after="breadcrumps" />
+    </body>
+    <referenceBlock name="category.products.list">
+    <arguments>
+        <!-- change “3” to however many per row you like -->
+        <argument name="column_count" xsi:type="number">6</argument>
+    </arguments>
+</referenceBlock>
+</page>

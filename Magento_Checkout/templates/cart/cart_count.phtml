@@ -1,0 +1,9 @@
+<?php 
+
+$helper = $this->helper('\Magento\Checkout\Helper\Cart');
+$cartCount=$helper->getSummaryCount();
+?>
+
+<?php if($cartCount > 0): ?>
+<span class="cart-count">(<?= $cartCount ?>)</span>
+<?php endif; ?>

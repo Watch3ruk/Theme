@@ -1,0 +1,185 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright Â© 2018 Porto. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page layout="2columns-right" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Magento_Catalog::css/product.css"/>
+    </head>
+    <body>
+        <move element="product.info.stock.sku" destination="product.info.main" before="page.main.title"/>
+        <referenceBlock name="product.attributes" remove="true"/>
+        <referenceBlock name="product.info.description" remove="true"/>
+        <referenceBlock name="product.info" remove="true"/>
+        <referenceBlock name="sidebar.additional" remove="true"/>
+        <referenceBlock name="product.info.review" remove="true"/>
+            <referenceBlock name="product.social.links" remove="true"/>
+
+        <move element="product.info.media" destination="content" before="product.info.main"/>
+        <move element="product.catalog.info.brand.desktop" destination="product.info.media" after="product.info.media.image"/>
+        <move element="product-brand-mobile" destination="content" after="product.info.details"/>
+        <move element="product.attribute.overview" destination="product.info.main" after="product.info.desktop"/>
+        <move element="product.info.stock.sku" destination="product.info.sku.compare" before="-"/>
+        <move element="view.addto.compare" destination="product.info.sku.compare" after="product.info.stock.sku"/>
+        <move element="product.info.mobile" destination="content" before="product.info.main"/>
+        <move element="view.addto.compare.mobile" destination="product.info.sku.compare.mobile" after="product.info.stock.sku.mobile"/>
+        <move element="product.info.desktop" destination="product.info.main" before="-"/>
+        <move element="product.info.sku.compare" destination="product.info.desktop" before="-"/>
+        <move element="page.main.title" destination="product.info.desktop" after="product.info.sku.compare"/>
+        <move element="product.info.type" destination="product.info.price" before="page.info.review"/>
+        <move element="product.info.price" destination="product.info.desktop" after="-"/>
+        <move element="product.price.tier" destination="product.info.desktop" after="product.info.price"/>
+        <move element="product.allergens.icon.desktop" destination="product.info.desktop" after="product.info.price" before="product.info"/>
+        <move element="product.info.addto.desktop" destination="product.info.desktop" after="product.allergens.info.main"/>
+        <move element="product.info.details" destination="product.info.main" after="product.attribute.overview"/>
+        <move element="alert.urls" destination="product.info.main" before="product.info.desktop"/>
+        <container name="product.info.desktop" htmlTag="div" htmlClass="product-info-desktop-wrapper" after="product.info.mobile">
+            <block class="Magento\Catalog\Block\Product\View" name="product.info.addto.desktop" template="Magento_Catalog::product/view/form.phtml" after="alert.urls">
+                <container name="product.info.form.content.desktop" as="product_info_form_content">
+                    <block class="Magento\Catalog\Block\Product\View" name="product.info.addtocart.desktop" as="addtocart_desktop" template="Magento_Catalog::product/view/addtocart.phtml"/>
+                </container>
+                <block class="Magento\Framework\View\Element\Template" name="product.info.form.options.desktop" as="options_container_desktop">
+                    <block class="Magento\Catalog\Block\Product\View" name="product.info.options.wrapper.desktop" as="product_options_wrapper_desktop" template="Magento_Catalog::product/view/options/wrapper.phtml">
+                        <block class="Magento\Catalog\Block\Product\View\Options" name="product.info.options.desktop" as="product_options_desktop" template="Magento_Catalog::product/view/options.phtml">
+                            <block class="Magento\Catalog\Block\Product\View\Options\Type\DefaultType" name="product.info.options.default.desktop" as="default_desktop" template="Magento_Catalog::product/view/options/type/default.phtml"/>
+                            <block class="Magento\Catalog\Block\Product\View\Options\Type\Text" name="product.info.options.text.desktop" as="text_desktop" template="Magento_Catalog::product/view/options/type/text.phtml"/>
+                            <block class="Magento\Catalog\Block\Product\View\Options\Type\File" name="product.info.options.file.desktop" as="file_desktop" template="Magento_Catalog::product/view/options/type/file.phtml"/>
+                            <block class="Magento\Catalog\Block\Product\View\Options\Type\Select" name="product.info.options.select.desktop" as="select_desktop" template="Magento_Catalog::product/view/options/type/select.phtml"/>
+                            <block class="Magento\Catalog\Block\Product\View\Options\Type\Date" name="product.info.options.date.desktop" as="date_desktop" template="Magento_Catalog::product/view/options/type/date.phtml"/>
+                        </block>
+                        <block class="Magento\Framework\View\Element\Html\Calendar" name="html_calendar_desktop" as="html_calendar_desktop" template="Magento_Theme::js/calendar.phtml"/>
+                    </block>
+                    <block class="Magento\Catalog\Block\Product\View" name="product.info.options.wrapper.bottom.desktop" as="product_options_wrapper_bottom_desktop" template="Magento_Catalog::product/view/options/wrapper/bottom.phtml">
+                        <block class="Magento\Catalog\Block\Product\View" name="product.info.addtocart.additional.desktop" as="product.info.addtocart.desktop" template="Magento_Catalog::product/view/addtocart.phtml"/>
+                    </block>
+                </block>
+            </block>
+        </container>
+        <!-- MOBILE VALUES -->
+        <container name="product.info.mobile" htmlTag="div" htmlClass="product-info-mobile-wrapper" before="-">
+            <container name="product.info.sku.compare.mobile" htmlTag="div" htmlClass="product-info-sku-compare-mobile" before="-">
+                <container name="product.info.stock.sku.mobile" label="Product auxiliary info" htmlTag="div" htmlClass="product-info-stock-sku">
+                    <container name="product.info.type" before="-"/>
+                    <block class="Magento\Catalog\Block\Product\View\Description" name="product.info.sku.mobile" template="Magento_Catalog::product/view/attribute.phtml" after="product.info.type">
+                        <arguments>
+                            <argument name="at_call" xsi:type="string">getSku</argument>
+                            <argument name="at_code" xsi:type="string">sku</argument>
+                            <argument name="css_class" xsi:type="string">sku</argument>
+                            <argument name="at_label" xsi:type="string">default</argument>
+                            <argument name="add_attribute" xsi:type="string">itemprop="sku"</argument>
+                        </arguments>
+                    </block>
+                </container>
+                <block class="Magento\Catalog\Block\Product\View" name="product.info.addto.mobile" as="addto" template="Magento_Catalog::product/view/addto.phtml">
+                    <block class="Magento\Catalog\Block\Product\View\AddTo\Compare" name="view.addto.compare.mobile" after="product.info.stock.sku.mobile"
+                           template="Magento_Catalog::product/view/addto/compare.phtml" >
+                        <arguments>
+                            <argument name="addToCompareViewModel" xsi:type="object">Magento\Catalog\ViewModel\Product\Checker\AddToCompareAvailability</argument>
+                        </arguments>
+                    </block>
+                </block>
+            </container>
+            <container name="product.info.price.mobile" label="Product info auxiliary container" htmlTag="div" htmlClass="product-info-price">
+                <block class="Magento\Catalog\Block\Product\View\Attributes" name="product.main.title.mobile" template="Magento_Catalog::product/view/title_mobile.phtml" group="detailed_info">
+                    <arguments>
+                        <argument name="css_class" xsi:type="string">product</argument>
+                        <argument name="add_base_attribute" xsi:type="string">itemprop="name"</argument>
+                    </arguments>
+                </block>
+                <block class="Magento\Catalog\Block\Product\View" name="product.info.review.mobile" template="Magento_Catalog::product/view/review.phtml" after="product.info.stock.sku.mobile" />
+                <block class="Magento\Catalog\Block\Product\View" name="product.stock.info.main" template="Magento_Catalog::product/view/stock.phtml" />
+                <block class="Magento\Catalog\Pricing\Render" name="product.price.final.mobile">
+                    <arguments>
+                        <argument name="price_render" xsi:type="string">product.price.render.default</argument>
+                        <argument name="price_type_code" xsi:type="string">final_price</argument>
+                        <argument name="zone" xsi:type="string">item_view</argument>
+                    </arguments>
+                </block>
+            </container>
+            <block class="Magento\Catalog\Pricing\Render" name="product.price.tier.mobile">
+                <arguments>
+                    <argument name="price_render" xsi:type="string">product.price.render.default</argument>
+                    <argument name="price_type_code" xsi:type="string">tier_price</argument>
+                    <argument name="zone" xsi:type="string">item_view</argument>
+                </arguments>
+            </block>
+
+            <!-- allergens icon  for mobile-->
+            <block class="Magento\Catalog\Block\Product\View" name="product.allergens.icon.mobile" template="product/view/allergens-icon.phtml" group="detailed_info" />
+            <block class="Magento\Catalog\Block\Product\View" name="product.info.addto.mobile" template="Magento_Catalog::product/view/form.phtml" after="alert.urls">
+                <container name="product.info.form.content" as="product_info_form_content">
+                    <block class="Magento\Catalog\Block\Product\View" name="product.info.addtocart" as="addtocart" template="Magento_Catalog::product/view/addtocart.phtml"/>
+                </container>
+                <block class="Magento\Framework\View\Element\Template" name="product.info.form.options" as="options_container">
+                    <block class="Magento\Catalog\Block\Product\View" name="product.info.options.wrapper" as="product_options_wrapper" template="Magento_Catalog::product/view/options/wrapper.phtml">
+                        <block class="Magento\Catalog\Block\Product\View\Options" name="product.info.options" as="product_options" template="Magento_Catalog::product/view/options.phtml">
+                            <block class="Magento\Catalog\Block\Product\View\Options\Type\DefaultType" name="product.info.options.default" as="default" template="Magento_Catalog::product/view/options/type/default.phtml"/>
+                            <block class="Magento\Catalog\Block\Product\View\Options\Type\Text" name="product.info.options.text" as="text" template="Magento_Catalog::product/view/options/type/text.phtml"/>
+                            <block class="Magento\Catalog\Block\Product\View\Options\Type\File" name="product.info.options.file" as="file" template="Magento_Catalog::product/view/options/type/file.phtml"/>
+                            <block class="Magento\Catalog\Block\Product\View\Options\Type\Select" name="product.info.options.select" as="select" template="Magento_Catalog::product/view/options/type/select.phtml"/>
+                            <block class="Magento\Catalog\Block\Product\View\Options\Type\Date" name="product.info.options.date" as="date" template="Magento_Catalog::product/view/options/type/date.phtml"/>
+                        </block>
+                        <block class="Magento\Framework\View\Element\Html\Calendar" name="html_calendar" as="html_calendar" template="Magento_Theme::js/calendar.phtml"/>
+                    </block>
+                    <block class="Magento\Catalog\Block\Product\View" name="product.info.options.wrapper.bottom" as="product_options_wrapper_bottom" template="Magento_Catalog::product/view/options/wrapper/bottom.phtml">
+                        <block class="Magento\Catalog\Block\Product\View" name="product.info.addtocart.additional" as="product.info.addtocart" template="Magento_Catalog::product/view/addtocart.phtml"/>
+                    </block>
+                </block>
+            </block>
+        </container>
+        <referenceContainer name="content" htmlTag="div" htmlClass="product-brand-desktop">
+            <block class="Magento\Catalog\Block\Product\View" name="product.catalog.info.brand.desktop" template="Magento_Catalog::product/view/icons.phtml" />
+             <block class="Magento\Catalog\Block\Product\View" name="product.catalog.info.brand.desktop" template="Magento_Catalog::product/view/allert_icons.phtml" />
+        </referenceContainer>
+
+        <!-- allergens-icon for desktop  -->
+        <block class="Magento\Catalog\Block\Product\View" name="product.allergens.icon.desktop" template="product/view/allergens-icon.phtml" group="detailed_info" />
+<block class="Magento\Catalog\Block\Product\View" name="product.catalog.info.brand.desktop" template="Magento_Catalog::product/view/icons.phtml" />
+<block class="Magento\Catalog\Block\Product\View" name="product.catalog.info.brand.desktop" template="Magento_Catalog::product/view/allert_icons.phtml" />
+        <block class="Magento\Catalog\Block\Product\View\Attributes" name="product.attribute.overview" template="Magento_Catalog::product/view/description-content.phtml" />
+        <container name="product.info.sku.compare" htmlTag="div" htmlClass="product-info-sku-compare" before="-">
+        </container>
+        <referenceBlock name="product.info.details">                
+            <block class="Magento\Catalog\Block\Product\View" name="product.allergens" template="product/view/allergens.phtml" group="detailed_info">
+                <arguments>
+                    <argument name="sort_order" xsi:type="string">0</argument>
+                    <argument translate="true" name="title" xsi:type="string">Ingredients &amp; Allergens</argument>
+                </arguments>
+            </block>              
+            
+            <block class="Magento\Catalog\Block\Product\View\Attributes" name="product.tab.nutitional" template="Magento_Catalog::product/view/nutitional.phtml" group="detailed_info">
+                <arguments>
+                    <argument name="sort_order" xsi:type="string">1</argument>
+                  <argument translate="true" name="title" xsi:type="string">Nutritional Info</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Catalog\Block\Product\View" name="product.tab.measurements" template="Magento_Catalog::product/view/measurements.phtml" group="detailed_info">
+                <arguments>
+                    <argument name="sort_order" xsi:type="string">2</argument>
+                  <argument translate="true" name="title" xsi:type="string">Measurements, Data &amp; Preparation</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Catalog\Block\Product\View\Attributes" name="product.tab.downloads" template="Magento_Catalog::product/view/downloads.phtml" group="detailed_info">
+                <arguments>
+                    <argument name="sort_order" xsi:type="string">3</argument>
+                  <argument translate="true" name="title" xsi:type="string">Downloads</argument>
+                </arguments>
+            </block>
+            <referenceBlock name="reviews.tab">
+                <arguments>
+                    <argument name="sort_order" xsi:type="string">4</argument>
+                </arguments>
+            </referenceBlock>
+            <referenceBlock name="brand.info.mobile">
+            </referenceBlock>
+        </referenceBlock>
+        <referenceContainer name="content" >
+            <container name="product-brand-mobile" htmlTag="div" htmlClass="product-brand-mobile">
+                <block class="Magento\Catalog\Block\Product\View" name="product.catalog.info.brand.mobile" template="Magento_Catalog::product/view/brand-info.phtml" />
+            </container>
+        </referenceContainer>
+    </body>
+</page>
