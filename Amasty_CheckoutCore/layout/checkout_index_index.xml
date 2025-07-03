@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2023 Amasty (https://www.amasty.com)
+ * @package One Step Checkout Core for Magento 2
+ */-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Amasty_CheckoutCore::vendor/tooltipster/css/tooltipster.min.css"/>
+    </head>
+    <body>
+        <referenceBlock name="after_header" remove="true" />
+        <referenceBlock name="catalog.topnav" remove="true" />
+        <referenceBlock name="top.search" remove="true" />
+        <referenceBlock name="logo" remove="true" />
+        <block class="Magento\Theme\Block\Html\Header\Logo" name="logo-checkout" before="-">
+            <arguments>
+                <argument name="logoPathResolver" xsi:type="object">Magento\Theme\ViewModel\Block\Html\Header\LogoPathResolver</argument>
+                <argument name="logo_size_resolver" xsi:type="object">Magento\Theme\ViewModel\Block\Html\Header\LogoSizeResolver</argument>
+            </arguments>
+        </block>
+        <move element="logo-checkout" destination="header-wrapper" before="minicart" />
+    </body>
+</page>

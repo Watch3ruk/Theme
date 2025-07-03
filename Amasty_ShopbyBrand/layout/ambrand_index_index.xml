@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2023 Amasty (https://www.amasty.com)
+ * @package Shop by Brand for Magento 2
+ */-->
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="category.image" remove="false" />
+        <referenceBlock name="catalog.list.top" remove="true" />
+        <block class="Magento\Framework\View\Element\Template" name="brand.products.count" template="Amasty_ShopbyBrand::product_count.phtml" />
+        <move element="brand.products.count" destination="page.main.title" after="rss.link" />
+        <referenceBlock name="category.products.count" remove="true" />
+        <move element="page.main.title" destination="title.description" before="category.description" />
+        <referenceContainer name="columns.top">
+            <container name="category.view.container" htmlTag="div" htmlClass="category-view" after="-">
+                <block class="Magento\Catalog\Block\Category\View" name="category.image" template="Magento_Catalog::category/image.phtml">
+                    <arguments>
+                        <argument name="image" xsi:type="object">Magento\Catalog\ViewModel\Category\Image</argument>
+                        <argument name="output" xsi:type="object">Magento\Catalog\ViewModel\Category\Output</argument>
+                    </arguments>
+                </block>
+                <container name="title.description" htmlTag="div" htmlClass="title-description" after="-">
+                    <block class="Magento\Catalog\Block\Category\View" name="category.description" template="Magento_Catalog::category/description.phtml"/>
+                </container>
+            </container>
+        </referenceContainer>
+    </body>
+</page>

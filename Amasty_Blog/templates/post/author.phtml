@@ -1,0 +1,28 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2023 Amasty (https://www.amasty.com)
+ * @package Blog Pro for Magento 2
+ */
+/** @var \Amasty\Blog\Block\Content\Post\Details $block */
+/** @var \Magento\Framework\Escaper $escaper */
+
+$post = $block->getPost();
+$viewModel = $block->getViewModel();
+?>
+
+<?php if ($block->isShowAuthorInfo() && $post->getPostedBy()): ?>
+    <?php $smallAuthorImage = $viewModel->getImage($post->getAuthor()); ?>
+    <div class="amblog-wrap">
+        <div class="amblog-post-item -author">
+            <?= $escaper->escapeHtml(__('by ')); ?>
+            <a rel="author"
+               class="amblog-ref"
+               href="<?= $escaper->escapeUrl($post->getAuthor()->getUrl()); ?>"
+               title="<?= $escaper->escapeHtmlAttr($post->getPostedBy()); ?>"
+               aria-label="<?= $escaper->escapeHtmlAttr($post->getPostedBy()); ?>">
+                <?= $escaper->escapeHtml($post->getPostedBy()); ?>
+            </a>
+        </div>
+    </div>
+<?php endif; ?>

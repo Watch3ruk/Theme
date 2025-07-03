@@ -1,0 +1,92 @@
+<!--
+ /**
+ * Amasty Grid Component
+ *
+ * @desc Products Grid Component For Category Page
+ */
+ -->
+
+<!-- ko scope: 'massaction_toolbar' -->
+    <!--ko if: onTop -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+    <!--/ko-->
+<!-- /ko -->
+
+<!-- ko scope: 'grid_title' -->
+    <!-- ko template: getTemplate() --><!-- /ko -->
+<!--/ko-->
+
+<div class="amqorder-content">
+    <ul class="amqorder-items-block" data-amqorder-js="items" data-bind="foreach: elems(), visible: elems().length">
+        <li data-bind="
+                attr: {
+                    'class': 'amqorder-item amqorder-item-info product-item-info' + ' -' + type_id + (isWeee ? ' -weee' : ''),
+                    'data-amqorder-js': 'item',
+                    'data-item-id': id
+                },
+                css: {
+                    '-errors': $parent.getErrors($data).length,
+                    '-smart': optionsQty() > 2
+                },
+                event: {
+                    'configurable.initialized': function(item, event) {
+                        $parent.preselectConfigurableDropDowns(item);
+                    }
+                }
+        ">
+            <div class="amqorder-items-wrapper">
+                <!-- ko scope: 'product_image' -->
+                    <!-- ko template: getTemplate() --><!-- /ko -->
+                <!-- /ko -->
+
+                <div class="amqorder-item -name">
+                    <!-- ko scope: 'product_title' -->
+                        <!-- ko template: getTemplate() --><!-- /ko -->
+                    <!-- /ko -->
+
+                    <!-- ko scope: 'options_button' -->
+                        <!-- ko template: getTemplate() --><!-- /ko -->
+                    <!--/ko-->
+                </div>
+
+                <!-- ko scope: 'sku' -->
+                    <!-- ko template: getTemplate() --><!-- /ko -->
+                <!-- /ko -->
+
+                <!-- ko scope: 'rating' -->
+                    <!-- ko template: getTemplate() --><!-- /ko -->
+                <!-- /ko -->
+
+                <!-- ko scope: 'qty' -->
+                    <!-- ko template: getTemplate() --><!-- /ko -->
+                <!-- /ko -->
+
+
+                <!-- ko scope: 'checkbox' -->
+                    <!-- ko template: getTemplate() --><!-- /ko -->
+                <!--/ko-->
+            </div>
+
+            <!-- ko scope: 'options_button' -->
+                <!-- ko template: getTemplate() --><!-- /ko -->
+            <!--/ko-->
+
+            <!-- ko scope: 'options_block' -->
+                <!-- ko template: getTemplate() --><!-- /ko -->
+            <!--/ko-->
+
+            <!-- ko scope: 'item_errors' -->
+                <!-- ko template: getTemplate() --><!-- /ko -->
+            <!--/ko-->
+        </li>
+    </ul>
+    <!-- ko scope: 'list_messages' -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+    <!--/ko-->
+</div>
+
+<!-- ko scope: 'massaction_toolbar' -->
+    <!--ko if: onBottom -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+    <!--/ko-->
+<!-- /ko -->

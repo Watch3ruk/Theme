@@ -1,0 +1,10 @@
+<ul class="amqorder-header" data-bind="visible: $parent.allItems().length">
+    <li class="amqorder-item -item" data-bind="i18n: 'Item'"></li>
+    <li class="amqorder-item -sku" data-bind="i18n: 'SKU(s)'"></li>
+    <li class="amqorder-item -rating" data-bind="i18n: 'Rating'" if="$parent.ratingEnabled"></li>
+    <li class="amqorder-item -qty" data-bind="i18n: 'Qty'"></li>
+    <li class="amqorder-item -action" data-bind="i18n: 'Action'" if="$parent.actionsEnabled"></li>
+    <!-- ko scope: 'select_all' -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+    <!--/ko-->
+</ul>

@@ -1,0 +1,93 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2023 Amasty (https://www.amasty.com)
+ * @package Blog Pro for Magento 2
+ */
+/**
+ * @var $block Amasty\Blog\Block\Featured
+ * @var $escaper Magento\Framework\Escaper
+ */
+
+$collection = $block->getCollection();
+$headerText = $block->getHeaderText();
+$isShowShortContent = $block->isShowShortContent();
+$isShowDate = $block->isShowDate();
+$isHumanized = $block->isHumanized();
+$collectionCount = $collection->count();
+?>
+
+<?php if ($collectionCount): ?>
+    <?php if ($headerText): ?>
+        <div class="blog-title">
+            <?= $escaper->escapeHtml(__($headerText)) ?>
+        </div>
+        <?php endif; ?>
+        <div class="amasty-blog slick">
+            <?php foreach ($collection as $post): ?>
+                <div class="post">
+                    <?php if ($post->getListThumbnailSrc()): ?>
+                        <a href="<?= $escaper->escapeUrl($post->getUrl()) ?>"
+                            title="<?= $escaper->escapeHtmlAttr($post->getTitle()) ?>"
+                            aria-label="<?= $escaper->escapeHtmlAttr($post->getTitle()) ?>"
+                            class="blog-image">
+                            <img src="<?= /* @noEscape */ $post->getListThumbnailSrc(); ?>"
+                                    alt="<?= $escaper->escapeHtmlAttr($post->getThumbnailAlt()); ?>">
+                        </a>
+                    <?php endif; ?>
+                    <div class="post-details">
+                        <a class="post-headline"
+                            href="<?= $escaper->escapeUrl($post->getUrl()); ?>"
+                            title="<?= $escaper->escapeHtmlAttr($post->getTitle()) ?>"
+                            aria-label="<?= $escaper->escapeHtmlAttr($post->getTitle()) ?>">
+                            <?= $escaper->escapeHtml($post->getTitle()); ?>
+                        </a>
+                        <?php if ($isShowShortContent && $post->getShortContent()): ?>
+                            <div class="post-shortdescription">
+                                <?= $escaper->escapeHtml($block->getStrippedContent($post->getShortContent())); ?>
+                            </div>
+                        <?php endif; ?>
+                        <div class="feature-card">
+                            <?php if ($isShowShortContent): ?>
+                                <a class="post-link"
+                                    href="<?= $escaper->escapeUrl($post->getUrl()); ?>"
+                                    title="<?= $escaper->escapeHtmlAttr(__('Read more')) ?>"
+                                    aria-label="<?= $escaper->escapeHtmlAttr(__('Read more')) ?>">
+                                    <?= $escaper->escapeHtml(__('Read more')) ?>
+                                </a>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach ?>
+        </div>
+
+<?php endif; ?>
+<script>
+require(['jquery', 'jquery/ui', 'slick'], function($) {
+    $(document).ready(function() {
+    jQuery(".amasty-blog").slick({
+            dots: false,
+            infinite: false,
+            slidesToShow: 4,
+            slidesToScroll: 4,
+            arrows: false,
+            responsive: [{
+                    breakpoint: 1200,
+                    settings: {
+                        slidesToShow: 4,
+                        slidesToScroll: 4
+                    }
+                },
+                {
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: 1.5,
+                        slidesToScroll: 1
+                    }
+                }
+            ]
+        });
+    });
+});
+</script>

@@ -1,0 +1,63 @@
+<!--
+ /**
+ * Amasty Search Component
+ *
+ * @desc Search Component For Quick Order Module
+ *
+ * @copyright 2009-2020 Amasty Ltd
+ * @license   https://amasty.com/license.html
+ */
+ -->
+
+<div class="amqorder-search" data-amqorder-js="search-wrapper">
+    <input class="amqorder-input -search"
+           type="search"
+           data-amqorder-js="search-input"
+           data-bind="attr: { placeholder: search_placeholder }, event: { click: search, input: search }">
+    <button class="amqorder-button -clear -search"
+            data-bind="event: { click: search }"></button>
+    <button class="amqorder-button -clear -remove"
+            data-bind="visible: !isEmptyInput(), event: { click: clear }"></button>
+    <ul class="amqorder-message-block"
+        data-amqorder-js="message"
+        data-bind="visible: isEmpty()">
+        <li class="amqorder-item" data-bind="i18n: 'Your search returned no products.'"></li>
+    </ul>
+    <ul class="amqorder-items-block" data-amqorder-js="items" data-bind="foreach: elems()">
+        <li class="amqorder-item">
+            <img class="amqorder-image"
+                 data-amqorder-js="image"
+                 data-bind="attr: {alt: image_label, src: image}">
+            <span class="amqorder-name" data-amqorder-js="name" data-bind="text: name"></span>
+            <!--ko if: $parent.isQtyShowed($data) -->
+                <div class="amqorder-qty-block" data-bind="mageInit: {'amqorderQty': {}}">
+                    <div class="amqorder-qty-wrapper" data-amqorder-js="qty-wrapper">
+                        <input class="amqorder-input"
+                               data-amqorder-js="input"
+                               type="number"
+                               min="1"
+                               value="1"
+                               data-bind="event: {
+                                    change: function(){ this.qty = +$element.value }
+                               }"
+                        >
+                    </div>
+                </div>
+            <!--/ko-->
+            <span class="amqorder-sku">
+                <b data-bind="i18n: 'SKU'"></b>: <span class="amqorder-text" data-amqorder-js="sku" text="sku"></span>
+            </span>
+           
+            <button class="amqorder-button -empty"
+                    type="button"
+                    data-amqorder-js="add"
+                    data-bind="
+                        i18n: 'Add',
+                        attr: {title: $t('Add current product')},
+                        click: function(){ $parent.add(this) }"></button>
+        </li>
+    </ul>
+</div>
+
+<div class="amqorder-overlay-block"
+     data-bind="visible: elems().length || isEmpty(), click: function (){ elems([]); isEmpty(false) }"></div>

@@ -1,0 +1,14 @@
+
+<span class="category-product-count top-brand-category-product-count"></span>
+<script type="text/javascript">
+    require(["jquery"], function ($) {
+        $(document).ready(function () {
+            var product_count = $('.get-product-count-brands-search').text();
+            if(product_count != '')
+            {
+            	$('.top-brand-category-product-count').html("("+product_count+")");
+            }
+            
+        });
+    });
+</script>
