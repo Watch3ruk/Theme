@@ -1,0 +1,25 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+
+<!-- ko if: ifShowValue() && !ifShowDetails() -->
+<tr class="totals-tax">
+    <th data-bind="text: title" class="mark" colspan="1" scope="row"></th>
+    <td data-bind="attr: {'data-th': title}" class="amount">
+        <span class="price" data-bind="text: getValue()"></span>
+    </td>
+</tr>
+<!-- /ko -->
+<!-- ko if: ifShowValue() && ifShowDetails() -->
+    <tr class="totals-tax-summary">
+        <th class="mark" scope="row" colspan="1">
+            <span class="detailed" data-bind="text: title"></span>
+        </th>
+        <td data-bind="attr: {'data-th': title}" class="amount">
+            <span class="price" data-bind="text: getValue()"></span>
+        </td>
+    </tr>
+<!-- /ko -->

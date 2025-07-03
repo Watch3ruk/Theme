@@ -1,0 +1,53 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+            <referenceContainer name="header.panel">
+            <block class="Magento\Framework\View\Element\Html\Links" name="header.links">
+                <arguments>
+                    <argument name="css_class" xsi:type="string">header links</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+      <!--    <referenceBlock name="header.panel.wrapper" remove="true" />   
+       <referenceBlock name="top.search" remove="true" />    -->
+           <referenceBlock name="register-link" remove="true" />           <!--for Create Account Link--> 
+        <move element="store.menu" destination="header-wrapper" before="minicart"/>
+        <!-- <referenceBlock name="minicart" remove="false"/> -->
+        <move element="top.search" destination="header-wrapper" after="store.menu"/>
+        <!-- <block class="Magento\Framework\View\Element\Template" name="top.search.bar" template="Magento_Search::form.mini.phtml">
+            <arguments>
+                <argument name="configProvider" xsi:type="object">Magento\Search\ViewModel\ConfigProvider</argument>
+                <argument name="additionalSearchFormData" xsi:type="object">Magento\Search\ViewModel\AdditionalSearchFormData</argument>
+            </arguments>
+        </block> -->
+         <!-- <referenceBlock name="minicart" remove="false"/> -->
+
+        <referenceContainer name="page.top">
+	        <block class="Magento\Cms\Block\Block" name="after_header" before="breadcrumbs"  >
+		        <arguments>
+		            <argument name="block_id" xsi:type="string">after_header</argument>
+		        </arguments>
+		    </block>
+	    </referenceContainer>   
+        <referenceContainer name="footer-container">
+            <container name="footer" as="footer" label="Page Footer">
+                <block class="Magento\Cms\Block\Block" name="footer_main">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">footer_main</argument>
+                    </arguments>
+                </block>
+                <block class="Magento\Cms\Block\Block" name="footer_copyright">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">copyright_info</argument>
+                    </arguments>
+                </block>
+            </container>
+         </referenceContainer>
+         <referenceContainer name="head.additional">
+ <block class="Magento\Framework\View\Element\Template" name="gtm.head" before="-" template="Magento_Theme::html/gtm_head.phtml" />
+</referenceContainer>
+
+<referenceContainer name="after.body.start">
+ <block class="Magento\Framework\View\Element\Template" name="gtm.body" before="-" template="Magento_Theme::html/gtm_body.phtml" />
+</referenceContainer>
+    </body>
+</page>

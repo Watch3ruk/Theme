@@ -1,0 +1,210 @@
+a.pagebuilder-button-primary,
+button.pagebuilder-button-primary,
+div.pagebuilder-button-primary,
+.cart.table-wrapper .actions-toolbar > .action.pagebuilder-button-primary,
+.action-gift.pagebuilder-button-primary {
+  text-decoration: none;
+  background-image: none;
+  background: #4dae65 !important;
+  border: 1px solid #4dae65 !important;
+  color: #ffffff !important;
+  border-radius: 100px;
+}
+a.pagebuilder-button-primary:hover,
+button.pagebuilder-button-primary:hover,
+div.pagebuilder-button-primary:hover,
+a.pagebuilder-button-primary:active,
+button.pagebuilder-button-primary:active,
+div.pagebuilder-button-primary:active,
+a.pagebuilder-button-primary:focus,
+button.pagebuilder-button-primary:focus,
+div.pagebuilder-button-primary:focus,
+.cart.table-wrapper .actions-toolbar > .action.pagebuilder-button-primary:hover,
+.cart.table-wrapper .actions-toolbar > .action.pagebuilder-button-primary:active,
+.cart.table-wrapper .actions-toolbar > .action.pagebuilder-button-primary:focus,
+.action-gift.pagebuilder-button-primary:hover,
+.action-gift.pagebuilder-button-primary:active,
+.action-gift.pagebuilder-button-primary:focus {
+  text-decoration: none;
+}
+a.pagebuilder-button-primary:focus,
+button.pagebuilder-button-primary:focus,
+div.pagebuilder-button-primary:focus,
+a.pagebuilder-button-primary:active,
+button.pagebuilder-button-primary:active,
+div.pagebuilder-button-primary:active,
+.cart.table-wrapper .actions-toolbar > .action.pagebuilder-button-primary:focus,
+.cart.table-wrapper .actions-toolbar > .action.pagebuilder-button-primary:active,
+.action-gift.pagebuilder-button-primary:focus,
+.action-gift.pagebuilder-button-primary:active {
+  background: #4dae65 !important;
+  border: 1px solid #4dae65 !important;
+  color: #ffffff !important;
+}
+a.pagebuilder-button-primary:hover,
+button.pagebuilder-button-primary:hover,
+div.pagebuilder-button-primary:hover,
+.cart.table-wrapper .actions-toolbar > .action.pagebuilder-button-primary:hover,
+.action-gift.pagebuilder-button-primary:hover {
+  background: #ffffff !important;
+  border: 1px solid #4dae65 !important;
+  color: #4dae65 !important;
+}
+.hr-center
+{
+    display: flex !important;
+}
+.hr
+{
+    display: flex !important;
+}
+a.pagebuilder-button-primary,
+button.pagebuilder-button-primary,
+div.pagebuilder-button-primary,
+.cart.table-wrapper .actions-toolbar > .action.pagebuilder-button-primary,
+.action-gift.pagebuilder-button-primary {
+  text-decoration: none;
+  background-image: none;
+  background: #4dae65 !important;
+  border: 1px solid #4dae65 !important;
+  color: #ffffff !important;
+  border-radius: 100px;
+}
+a.pagebuilder-button-primary:hover,
+button.pagebuilder-button-primary:hover,
+div.pagebuilder-button-primary:hover,
+a.pagebuilder-button-primary:active,
+button.pagebuilder-button-primary:active,
+div.pagebuilder-button-primary:active,
+a.pagebuilder-button-primary:focus,
+button.pagebuilder-button-primary:focus,
+div.pagebuilder-button-primary:focus,
+.cart.table-wrapper .actions-toolbar > .action.pagebuilder-button-primary:hover,
+.cart.table-wrapper .actions-toolbar > .action.pagebuilder-button-primary:active,
+.cart.table-wrapper .actions-toolbar > .action.pagebuilder-button-primary:focus,
+.action-gift.pagebuilder-button-primary:hover,
+.action-gift.pagebuilder-button-primary:active,
+.action-gift.pagebuilder-button-primary:focus {
+  text-decoration: none;
+}
+a.pagebuilder-button-primary:focus,
+button.pagebuilder-button-primary:focus,
+div.pagebuilder-button-primary:focus,
+a.pagebuilder-button-primary:active,
+button.pagebuilder-button-primary:active,
+div.pagebuilder-button-primary:active,
+.cart.table-wrapper .actions-toolbar > .action.pagebuilder-button-primary:focus,
+.cart.table-wrapper .actions-toolbar > .action.pagebuilder-button-primary:active,
+.action-gift.pagebuilder-button-primary:focus,
+.action-gift.pagebuilder-button-primary:active {
+  background: #4dae65 !important;
+  border: 1px solid #4dae65 !important;
+  color: #ffffff !important;
+}
+a.pagebuilder-button-primary:hover,
+button.pagebuilder-button-primary:hover,
+div.pagebuilder-button-primary:hover,
+.cart.table-wrapper .actions-toolbar > .action.pagebuilder-button-primary:hover,
+.action-gift.pagebuilder-button-primary:hover {
+  background: #ffffff !important;
+  border: 1px solid #4dae65 !important;
+  color: #4dae65 !important;
+}
+.hr-center
+{
+    display: flex !important;
+}
+.hr
+{
+    display: flex !important;
+}
+a.pagebuilder-button-secondary,
+button.pagebuilder-button-secondary,
+div.pagebuilder-button-secondary,
+.cart.table-wrapper .actions-toolbar > .action.pagebuilder-button-secondary,
+.action-gift.pagebuilder-button-secondary {
+  text-decoration: none;
+  background-image: none;
+  background: #4dae65 !important;
+  border: 1px solid #4dae65 !important;
+  color: #ffffff !important;
+  border-radius: 5px;
+  padding: 5px 15px ;
+}
+a.pagebuilder-button-secondary:hover,
+button.pagebuilder-button-secondary:hover,
+div.pagebuilder-button-secondary:hover,
+a.pagebuilder-button-secondary:active,
+button.pagebuilder-button-secondary:active,
+div.pagebuilder-button-secondary:active,
+a.pagebuilder-button-secondary:focus,
+button.pagebuilder-button-secondary:focus,
+div.pagebuilder-button-secondary:focus,
+.cart.table-wrapper .actions-toolbar > .action.pagebuilder-button-secondary:hover,
+.cart.table-wrapper .actions-toolbar > .action.pagebuilder-button-secondary:active,
+.cart.table-wrapper .actions-toolbar > .action.pagebuilder-button-secondary:focus,
+.action-gift.pagebuilder-button-secondary:hover,
+.action-gift.pagebuilder-button-secondary:active,
+.action-gift.pagebuilder-button-secondary:focus {
+  text-decoration: none;
+}
+a.pagebuilder-button-secondary:focus,
+button.pagebuilder-button-secondary:focus,
+div.pagebuilder-button-secondary:focus,
+a.pagebuilder-button-secondary:active,
+button.pagebuilder-button-secondary:active,
+div.pagebuilder-button-secondary:active,
+.cart.table-wrapper .actions-toolbar > .action.pagebuilder-button-secondary:focus,
+.cart.table-wrapper .actions-toolbar > .action.pagebuilder-button-secondary:active,
+.action-gift.pagebuilder-button-secondary:focus,
+.action-gift.pagebuilder-button-secondary:active {
+  background: #4dae65 !important;
+  border: 1px solid #4dae65 !important;
+  color: #ffffff !important;
+}
+a.pagebuilder-button-secondary:hover,
+button.pagebuilder-button-secondary:hover,
+div.pagebuilder-button-secondary:hover,
+.cart.table-wrapper .actions-toolbar > .action.pagebuilder-button-secondary:hover,
+.action-gift.pagebuilder-button-secondary:hover {
+  background: #ffffff !important;
+  border: 1px solid #4dae65 !important;
+  color: #4dae65 !important;
+}
+.amshopby-morefrom .price-box {
+  display: none!important;
+}
+.replacement {
+  margin-top: 15px;
+    border: solid;
+    padding: 10px;
+    border-radius: 15px;
+    border-color: green;
+    color: red;
+}
+
+
+
+.replacement .actions-secondary {
+
+ display: none !important;
+
+}
+.replacement .block .widget .block-products-list .grid
+{
+  margin-bottom: 0px !important;
+}
+
+  .replacement .page-layout-1column .block.widget .products-grid .product-item {
+    width: auto;
+}
+
+.replacement-product .page-layout-1column .block.widget .products-grid .product-item {
+    margin-left: 2%;
+   width: auto !important;
+}
+
+.replacement-product .page-layout-1column .block.widget .products-grid .product-item {
+    margin-left: 2%;
+    width: auto;
+}

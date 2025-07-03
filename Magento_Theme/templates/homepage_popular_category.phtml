@@ -1,0 +1,27 @@
+<?php 
+// Magento\Catalog\Block\Adminhtml\Category/AbstractCategory
+$categroyObj= $block->getLayout()->createBlock('Magento\Catalog\Block\Adminhtml\Category\AbstractCategory');
+$collection = $categroyObj->getCategoryCollection();
+$collection=$collection->addAttributeToFilter('popular_category','1');
+?>
+
+<div class="popular-category">
+    <?php 
+    foreach ($collection as $key=> $category) {
+        // $_category = $objectManager->create('Magento\Catalog\Model\Category')->load($category->getId());
+        $_category=$categoryHelper->getCategory($category);
+        // if($key == 9){
+        //     break;
+        // }
+        ?> 
+        <a href="<?= $_category->getUrl() ?>" >
+        <div class="category">
+            <?php if($_category->getImageUrl()){ ?>
+                <img class="category-image"src="<?php echo $_category->getImageUrl() ?>" alt="<?php echo $category->getName() ?>">
+            <?php  } ?>
+            <h5 class="category-name"><?php echo $category->getName() ?></h5>
+        </div>
+        </a>
+    <?php }
+    ?>
+</div>

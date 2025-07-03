@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+    	<css src="css/header.css"/>
+		<css src="css/footer.css"/>
+		<css src="css/fixes.css"/>
+		<css src="css/custom.css"/>
+		<css src="css/product.css"/>
+		<css src="css/m_product.css"/>
+		<css src="css/category.css"/>
+    	<css src="css/font/fontawesome.min.css"/>
+        <script src="js/menu.js"/>
+        <script src="js/custom.js"/>
+        <font src="css/fonts/Luma-Icons.woff2"/>
+        <!-- <script src="js/slick.min.js"/> -->
+    </head>
+</page>
