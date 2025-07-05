@@ -7,8 +7,8 @@
 // @codingStandardsIgnoreFile
 
 ?>
-<div class="contact-main">
-    <div class="address-container">
+<div class="contact-main container mx-auto p-4">
+    <div class="address-container flex flex-col md:flex-row gap-4">
         <div class="address">
             <div class="mail"><p><a href="mailto:info@thomasridley.co.uk">info@thomasridley.co.uk</a></p></div>
             <div class="telephone"><p><a href="tel:01359 270536">01359 270536</a></p></div>
@@ -25,7 +25,7 @@
             <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d610.7956348747125!2d0.772081!3d52.240068!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d84cd2a24625a1%3A0x70062c5b8753c5fc!2sThomas%20Ridley%20Foodservice!5e0!3m2!1sen!2sus!4v1689588137091!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
     </div>
-    <div class="contact-form-container">
+    <div class="contact-form-container bg-white p-8 rounded shadow">
         <h3 class="contact-title">Enquire</h3>
         <form class="form contact"
             action="<?php echo $block->getFormAction(); ?>"
@@ -69,7 +69,7 @@
             <div class="actions-toolbar">
                 <div class="primary">
                     <input type="hidden" name="hideit" id="hideit" value="" />
-                    <button type="submit" title="<?php echo __('Submit') ?>" class="action submit primary">
+                    <button type="submit" title="<?php echo __('Submit') ?>" class="action submit primary bg-green-600 text-white rounded px-4 py-2">
                         <span><?php echo __('Enquire Now') ?></span>
                     </button>
                 </div>
