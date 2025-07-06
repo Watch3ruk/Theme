@@ -14,7 +14,8 @@
 		<css src="css/product.css"/>
 		<css src="css/m_product.css"/>
 		<css src="css/category.css"/>
-    	<css src="css/font/fontawesome.min.css"/>
+        <css src="css/font/fontawesome.min.css"/>
+        <link src="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" src_type="url" rel="stylesheet"/>
         <script src="js/menu.js"/>
         <script src="js/custom.js"/>
         <font src="css/fonts/Luma-Icons.woff2"/>
